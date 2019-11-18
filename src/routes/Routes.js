@@ -1,0 +1,16 @@
+import React from "react";
+import { Route } from "react-router";
+import PrivateRoute from "./PrivateRoute";
+import Login from "../components/Login";
+import HelloWorld from "../components/HelloWorld";
+
+const Routes = () => {
+  return (
+    <>
+      <Route path="/" exact component={Login} />
+      <PrivateRoute path="/helloworld" exact component={HelloWorld} />
+    </>
+  );
+};
+
+export default Routes;
