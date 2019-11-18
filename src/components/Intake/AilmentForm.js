@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addAilment } from "../../store/actions";
 
 export const AilmentForm = () => {
+  const dispatch = useDispatch();
   const initialValues = {
     ailment: "",
-    yearsUse: null,
-    painLevel: null
+    yearsUse: "",
+    painLevel: ""
   };
 
   const [ailmentValues, setAilmentValues] = useState(initialValues);
@@ -44,6 +47,9 @@ export const AilmentForm = () => {
             onChange={handleChange}
             value={ailmentValues.painLevel}
           />
+          <button onClick={() => dispatch(addAilment(ailmentValues))}>
+            Add Ailment
+          </button>
         </form>
       </div>
     </>
