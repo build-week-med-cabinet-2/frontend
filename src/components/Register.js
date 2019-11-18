@@ -25,7 +25,7 @@ const Register = props => {
     //   })
     //   .catch(err => console.log(err.response));
     localStorage.setItem("token", fakeToken);
-    props.history.push("/helloworld");
+    props.history.push("/intake/ailments");
     setCredentials(initialValues);
   };
   return (
