@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import {Container, Row, Col, Button, Form, Input} from 'reactstrap';
+import "bootstrap/dist/css/bootstrap.css";
 
 const Login = props => {
   const intialValues = {
@@ -34,38 +36,47 @@ const Login = props => {
   };
 
   return (
-    <>
-      <div className="Login-Form-Wrapper">
-        <form onSubmit={submitLogin}>
-          <label htmlFor="username"></label>
-          <input
-            type="text"
-            name="username"
-            onChange={handleChange}
-            value={credentials.username}
-            placeholder="username..."
-          />
-          <label htmlFor="password"></label>
-          <input
-            type="password"
-            name="password"
-            onChange={handleChange}
-            value={credentials.password}
-            placeholder="password..."
-          />
-          <button type="submit">
-            Login!{" "}
-            <span role="img" aria-label="PalmTree">
-              🌴
-            </span>
-          </button>
-        </form>
-      </div>
-      <div className="DontHaveAccountWrapper">
-        <h2>Don't have an account? Click here to register</h2>
-        <button onClick={routeChange}>Signup</button>
-      </div>
-    </>
+    <Container>
+      <Col  xs={{ size: 10, offset: 1 }} md={{size: 6, offset: 3}}>
+      <header className='AuthHeader'>
+        <h1>Med Cabinet</h1>
+      </header>
+        <Form onSubmit={submitLogin}>
+          <div>
+            <label htmlFor="username"></label>
+            <Input
+              type="text"
+              name="username"
+              onChange={handleChange}
+              value={credentials.username}
+              placeholder="username..."
+              className="FormTextInput"
+            />
+          </div>
+          <div>
+            <label htmlFor="password"></label>
+            <Input
+              type="password"
+              name="password"
+              onChange={handleChange}
+              value={credentials.password}
+              placeholder="password..."
+              className="FormTextInput"
+            />
+          </div>
+            <Button type="submit" color="primary" className="AuthButton">
+              Login!{" "}
+              <span role="img" aria-label="PalmTree">
+                🌴
+              </span>
+            </Button>
+        </Form>
+        <Col xs={{ size: 11, offset: 0.5 }} className="SwitchAuthPageWrapper">
+          <span>Don't have an account?</span>
+          <Button onClick={routeChange} outline color="primary" className="SwitchAuthButton">Sign up</Button>
+        </Col>
+      </Col>
+    </Container>
   );
 };
 
