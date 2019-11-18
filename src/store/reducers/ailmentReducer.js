@@ -25,6 +25,13 @@ export const ailmentReducer = (state = initialState, action) => {
         ...state,
         ailments: [...state.ailments, newAilment]
       };
+    case Types.REMOVE_AILMENT:
+      return {
+        ...state,
+        ailments: [
+          ...state.ailments.filter(obj => obj.id !== action.payload.id)
+        ]
+      };
     default:
       return state;
   }
