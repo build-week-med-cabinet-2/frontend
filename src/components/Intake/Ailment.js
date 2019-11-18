@@ -6,7 +6,7 @@ export const Ailment = props => {
   return (
     <>
       <button>❌</button>
-      <h4>{ailment.name}</h4>
+      <h4>{ailment.ailmentName}</h4>
     </>
   );
 };

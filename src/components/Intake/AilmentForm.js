@@ -5,7 +5,7 @@ import { addAilment } from "../../store/actions";
 export const AilmentForm = () => {
   const dispatch = useDispatch();
   const initialValues = {
-    ailment: "",
+    ailmentName: "",
     yearsUse: "",
     painLevel: ""
   };
@@ -14,18 +14,28 @@ export const AilmentForm = () => {
 
   const handleChange = e => {
     setAilmentValues({ ...ailmentValues, [e.target.name]: e.target.value });
+    console.log(newAilment);
+  };
+
+  const newAilment = { ...ailmentValues };
+  console.log(`new ailment,`, newAilment);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(newAilment);
+    dispatch(addAilment(newAilment));
   };
 
   return (
     <>
       <div className="formWrapper">
-        <form>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="ailment">Ailment</label>
           <input
             type="text"
-            name="ailment"
+            name="ailmentName"
             onChange={handleChange}
-            value={ailmentValues.ailment}
+            value={ailmentValues.ailmentName}
           />
           <label htmlFor="years of pharma use">Years of Pharma Use</label>
           <input
@@ -47,9 +57,7 @@ export const AilmentForm = () => {
             onChange={handleChange}
             value={ailmentValues.painLevel}
           />
-          <button onClick={() => dispatch(addAilment(ailmentValues))}>
-            Add Ailment
-          </button>
+          <button type="submit">Add Ailment</button>
         </form>
       </div>
     </>
