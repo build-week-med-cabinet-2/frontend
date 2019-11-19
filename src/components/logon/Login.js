@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Container, Row, Col, Button, Form, Input } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
+
+import LogoAnimated from '.././LogoAnimated';
 
 const Login = props => {
   const initialValues = {
@@ -36,11 +38,12 @@ const Login = props => {
   };
 
   return (
-    <Container>
-      <Col xs={{ size: 10, offset: 1 }} md={{ size: 6, offset: 3 }}>
-        <header className="AuthHeader">
-          <h1>Med Cabinet</h1>
-        </header>
+    <Container >
+      <Col  xs={{ size: 10, offset: 1 }} md={{size: 8, offset: 2}} style={{border:'1px solid lightgrey', marginTop:'80px', padding:'20px 50px'}}>
+      <header className='AuthHeader'>
+        <LogoAnimated />
+        <h1>Med Cabinet</h1>
+      </header>
         <Form onSubmit={submitLogin}>
           <div>
             <label htmlFor="username"></label>
