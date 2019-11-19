@@ -1,68 +1,44 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Container, Row, Col, Button, Form, Input } from "reactstrap";
+import { Container, Col, Button } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
+import {withFormik, Form, Field} from 'formik';
+import * as Yup from 'yup';
+
+import LogoAnimated from '.././LogoAnimated';
 
 const Login = props => {
-  const initialValues = {
-    username: "",
-    password: ""
-  };
-
-  const [credentials, setCredentials] = useState(initialValues);
-  const handleChange = e => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  };
-  const submitLogin = e => {
-    e.preventDefault();
-    const URL = "https://medicalcabinet.herokuapp.com/api/auth/login";
-    // const fakeToken = "this is a fake token this is a bad";
-    axios
-      .post(`${URL}`, credentials)
-      .then(res => {
-        console.log(res);
-        localStorage.setItem("token", res.data.token);
-        props.history.push("/helloworld");
-      })
-      .catch(err => console.log(err.response));
-    props.history.push("/helloworld");
-    setCredentials(initialValues);
-  };
-
   const routeChange = () => {
     let path = "/signup";
     props.history.push(path);
   };
 
   return (
-    <Container>
-      <Col xs={{ size: 10, offset: 1 }} md={{ size: 6, offset: 3 }}>
-        <header className="AuthHeader">
-          <h1>Med Cabinet</h1>
-        </header>
-        <Form onSubmit={submitLogin}>
+    <Container >
+      <Col  xs={{ size: 10, offset: 1 }} md={{size: 8, offset: 2}} style={{border:'1px solid lightgrey', marginTop:'80px', padding:'20px 50px'}}>
+      <header className='AuthHeader'>
+        <LogoAnimated />
+        <h1>Med Cabinet</h1>
+      </header>
+        <Form>
           <div>
-            <label htmlFor="username"></label>
-            <Input
+            <Field
               type="text"
               name="username"
-              onChange={handleChange}
-              value={credentials.username}
               placeholder="username..."
               className="FormTextInput"
             />
+            {props.touched.username && props.errors.username && <p className='error'>{props.errors.username}</p>}
           </div>
           <div>
-            <label htmlFor="password"></label>
-            <Input
+            <Field
               type="password"
               name="password"
-              onChange={handleChange}
-              value={credentials.password}
               placeholder="password..."
               className="FormTextInput"
             />
+            {props.touched.password && props.errors.password && <p className='error'>{props.errors.password}</p>}
           </div>
           <Button type="submit" color="primary" className="AuthButton">
             Login!{" "}
@@ -87,4 +63,31 @@ const Login = props => {
   );
 };
 
-export default Login;
+export default withFormik({
+  mapPropsToValues({username, password}){
+    return{
+      username: username || '',
+      password: password || ''
+    }
+  },
+  validationSchema: Yup.object().shape({
+    username: Yup.string().min(4,'Username must be at least 4 characters.').required('Name is required.'),
+    password: Yup.string().min(6, 'Password must be at least 6 characters.').required('Password is required.'),
+  }),
+  handleSubmit(values, {setStatus, props}){
+    const URL = "https://medicalcabinet.herokuapp.com/api/auth/login";
+    // const fakeToken = "this is a fake token this is a bad";
+
+    console.log('formik submitted with values:');
+    console.log(values);
+
+    axios
+      .post(`${URL}`, values)
+      .then(res => {
+        console.log(res);
+        localStorage.setItem("token", res.data.token);
+        props.history.push("/helloworld");
+      })
+      .catch(err => console.log(err.response));
+  }
+})(Login)

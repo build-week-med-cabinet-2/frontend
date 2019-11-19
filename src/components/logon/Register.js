@@ -1,38 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Container, Row, Col, Button, Form, Input } from "reactstrap";
+import {Container, Col, Button} from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.css";
+import {withFormik, Form, Field} from 'formik';
+import * as Yup from 'yup';
+
+import LogoAnimated from '.././LogoAnimated';
 
 const Register = props => {
-  const initialValues = {
-    username: "",
-    password: "",
-    repeatPassword: ""
-  };
-
-  const [credentials, setCredentials] = useState(initialValues);
-
-  const handleChange = e => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  };
-  const submitRegister = e => {
-    e.preventDefault();
-    const URL = "https://medicalcabinet.herokuapp.com/api/auth/register";
-    const newUser = {
-      username: credentials.username,
-      password: credentials.password
-    };
-    // const fakeToken = "this is a fake token this is bad";
-    axios
-      .post(`${URL}`, newUser)
-      .then(res => {
-        console.log(`success`, res);
-        routeChange();
-      })
-      .catch(err => console.log(err.response));
-    setCredentials(initialValues);
-  };
-
   const routeChange = () => {
     let path = "/";
     props.history.push(path);
@@ -40,35 +15,30 @@ const Register = props => {
 
   return (
     <Container className="Register-Form-Wrapper">
-      <Col xs={{ size: 10, offset: 1 }} md={{ size: 6, offset: 3 }}>
-        <header className="AuthHeader">
+      <Col xs={{ size: 10, offset: 1 }} md={{size: 8, offset: 2}} style={{border:'1px solid lightgrey', marginTop:'80px', padding:'20px 50px'}}>
+        <header className='AuthHeader'>
+          <LogoAnimated />
           <h1>Med Cabinet</h1>
         </header>
-        <Form onSubmit={submitRegister}>
+        <Form>
           <label htmlFor="username" />
-          <Input
+          <Field
             type="text"
             name="username"
-            onChange={handleChange}
-            value={credentials.username}
             placeholder="username..."
             className="FormTextInput"
           />
           <label htmlFor="password" />
-          <Input
+          <Field
             type="password"
             name="password"
-            onChange={handleChange}
-            value={credentials.password}
             placeholder="password..."
             className="FormTextInput"
           />
           <label htmlFor="repeat password" />
-          <Input
+          <Field
             type="password"
             name="repeatPassword"
-            onChange={handleChange}
-            value={credentials.repeatPassword}
             placeholder="repeat password..."
             className="FormTextInput"
           />
@@ -95,4 +65,32 @@ const Register = props => {
   );
 };
 
-export default Register;
+export default withFormik({
+  mapPropsToValues({username, password, repeatPassword}){
+    return{
+      username: username || '',
+      password: password || '',
+      repeatPassword: repeatPassword || '',
+    }
+  },
+  validationSchema: Yup.object().shape({
+    username: Yup.string().min(4,'Username must be at least 4 characters.').required('Name is required.'),
+    password: Yup.string().min(6, 'Password must be at least 6 characters.').required('Password is required.'),
+    password: Yup.string().min(6, 'Password must be at least 6 characters.').required('Password is required.'),
+  }),
+  handleSubmit(values, {setStatus, props}){
+    const URL = "https://medicalcabinet.herokuapp.com/api/auth/register";
+    const newUser = {
+      username: values.username,
+      password: values.password
+    };
+    // const fakeToken = "this is a fake token this is bad";
+    axios
+      .post(`${URL}`, newUser)
+      .then(res => {
+        console.log(`success`, res);
+        props.history.push("/");
+      })
+      .catch(err => console.log(err.response));
+  }
+})(Register)

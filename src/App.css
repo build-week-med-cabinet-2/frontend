@@ -31,13 +31,20 @@ html, body {
 
 .AuthHeader{
   text-align: center;
-  margin: 80px 0 20px 0;
+  margin: 40px 0 20px 0;
 }
 
 .AuthButton{
   font-size: 1.8rem;
   width:100%;
   margin:10px 0;
+  background: #38B2AC;
+  border: 1px solid #319795;
+}
+
+.AuthButton:hover{
+  background:#319795;
+  border: 1px solid #319795;
 }
 
 .FormTextInput{
@@ -51,4 +58,16 @@ html, body {
 .SwitchAuthButton{
   font-size: 1.2rem;
   margin: 10px 10px;
+  border: 1px solid #38B2AC;
+  color: #38B2AC;
+}
+
+.SwitchAuthButton:hover{
+  border: 1px solid #38B2AC;
+  background: #38B2AC;
+  color:white;
+}
+
+.LogoNavBar{
+  margin-right: 1rem;
 }
