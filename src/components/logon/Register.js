@@ -3,7 +3,7 @@ import axios from "axios";
 import {Container, Row, Col, Button, Form, Input, Card} from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.css";
 
-import LogoAnimated from './LogoAnimated';
+import LogoAnimated from '.././LogoAnimated';
 
 const Register = props => {
   const initialValues = {
@@ -29,7 +29,7 @@ const Register = props => {
     //   })
     //   .catch(err => console.log(err.response));
     localStorage.setItem("token", fakeToken);
-    props.history.push("/helloworld");
+    props.history.push("/intake/ailments");
     setCredentials(initialValues);
   };
 
