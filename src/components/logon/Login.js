@@ -23,7 +23,8 @@ const Login = props => {
     axios
       .post(`${URL}`, credentials)
       .then(res => {
-        localStorage.setItem("token", res.data.payload);
+        console.log(res);
+        localStorage.setItem("token", res.data.token);
         props.history.push("/helloworld");
       })
       .catch(err => console.log(err.response));
