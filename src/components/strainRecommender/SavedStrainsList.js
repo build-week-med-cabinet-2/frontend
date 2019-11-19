@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function SavedStrainsList() {
-  return <div>Hello from SavedStrainsList</div>;
+  return <div>Users SaveStrains will go here</div>;
 }
