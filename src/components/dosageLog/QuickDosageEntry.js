@@ -1,51 +1,70 @@
 import React, { useState } from "react";
+import { withFormik, Form, Field } from "formik";
+import * as Yup from "yup";
+import { Container, Col, Button } from "reactstrap";
+import "bootstrap/dist/css/bootstrap.css";
 
-export default function QuickDosageEntry() {
-  const initialValues = {
-    date: "",
-    strain: "",
-    dosageAmount: "",
-    intakeMethod: ""
-  };
-
-  const [log, setLog] = useState(initialValues);
-
-  const handleChange = e => {
-    setLog({ ...log, [e.target.name]: e.target.value });
-  };
-
+const QuickDosageEntry = props => {
   return (
     <>
-      <form>
+      <Form>
         <label htmlFor="dosage date">Date:</label>
-        <input
+        <Field
           type="date"
           name="date"
-          onChange={handleChange}
-          value={log.date}
         />
+        {props.touched.date && props.errors.date && (<p className="error">{props.errors.date}</p>)}
+        
         <label htmlFor="strain">Strain:</label>
-        <input
+        <Field
           type="text"
           name="strain"
-          onChange={handleChange}
-          value={log.strain}
         />
+        {props.touched.strain && props.errors.strain && (<p className="error">{props.errors.strain}</p>)}
+        
         <label htmlFor="Dosage Amount">Dosage Amount:</label>
-        <input
+        <Field
           type="number"
           name="dosageAmount"
-          onChange={handleChange}
-          value={log.dosageAmount}
         />
+        {props.touched.dosageAmount && props.errors.dosageAmount && (<p className="error">{props.errors.dosageAmount}</p>)}
+
         <label htmlFor="intake method">Intake Method:</label>
-        <input
+        <Field
           type="text"
           name="intakeMethod"
-          onChange={handleChange}
-          value={log.intakeMethod}
         />
-      </form>
+        {props.touched.intakeMethod && props.errors.intakeMethod && (<p className="error">{props.errors.intakeMethod}</p>)}
+
+        <Button type="submit">Submit</Button>
+      </Form>
     </>
   );
 }
+
+export default withFormik({
+  mapPropsToValues({ date, strain, dosageAmount, intakeMethod }) {
+    return {
+      date: date || "",
+      strain: strain || "",
+      dosageAmount: dosageAmount || "",
+      intakeMethod: intakeMethod || ""
+    };
+  },
+  validationSchema: Yup.object().shape({
+    date: Yup.date()
+      .required("Date is required."),
+    strain: Yup.string()
+      .min(2, "Strain must be at least 2 characters.")
+      .required("Strain is required."),
+    dosageAmount: Yup.number()
+      .required("Dosage amount is required."),
+    intakeMethod: Yup.string()
+      .min(2, "Intake method must be at least 2 characters.")
+      .required("Intake method is required.")
+  }),
+  handleSubmit(values, { setStatus, props }) {
+    console.log("formik submitted with values:");
+    console.log(values);
+  }
+})(QuickDosageEntry);
