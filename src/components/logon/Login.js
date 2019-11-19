@@ -18,16 +18,15 @@ const Login = props => {
   };
   const submitLogin = e => {
     e.preventDefault();
-    const URL = "https://ourheroku.database/";
-    const fakeToken = "this is a fake token this is a bad";
-    // axios
-    //   .post(`${URL}login`, credentials)
-    //   .then(res => {
-    //     localStorage.setItem("token", fakeToken);
-    //     props.history.push("/helloworld");
-    //   })
-    //   .catch(err => console.log(err.response));
-    localStorage.setItem("token", fakeToken);
+    const URL = "https://medicalcabinet.herokuapp.com/api/auth/login";
+    // const fakeToken = "this is a fake token this is a bad";
+    axios
+      .post(`${URL}`, credentials)
+      .then(res => {
+        localStorage.setItem("token", res.data.payload);
+        props.history.push("/helloworld");
+      })
+      .catch(err => console.log(err.response));
     props.history.push("/helloworld");
     setCredentials(initialValues);
   };
