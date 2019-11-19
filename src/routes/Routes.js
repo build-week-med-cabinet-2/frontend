@@ -7,6 +7,7 @@ import HelloWorld from "../components/HelloWorld";
 import StrainForm from "../components/StrainForm";
 import { Ailments } from "../components/intake/Ailments";
 import Strains from "../components/strainRecommender/Strains";
+import Display from "../components/dashboard/Display";
 
 const Routes = () => {
   return (
@@ -17,6 +18,7 @@ const Routes = () => {
       <PrivateRoute path="/strainform" exact component={StrainForm} />
       <PrivateRoute path="/intake/ailments" exact component={Ailments} />
       <PrivateRoute path="/strains" exact component={Strains} />
+      <PrivateRoute path="/dashboard" exact component={Display} />
     </>
   );
 };

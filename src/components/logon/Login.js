@@ -1,12 +1,12 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Container, Col, Button } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
-import {withFormik, Form, Field} from 'formik';
-import * as Yup from 'yup';
+import { withFormik, Form, Field } from "formik";
+import * as Yup from "yup";
 
-import LogoAnimated from '.././LogoAnimated';
+import LogoAnimated from ".././LogoAnimated";
 
 const Login = props => {
   const routeChange = () => {
@@ -15,12 +15,20 @@ const Login = props => {
   };
 
   return (
-    <Container >
-      <Col  xs={{ size: 10, offset: 1 }} md={{size: 8, offset: 2}} style={{border:'1px solid lightgrey', marginTop:'80px', padding:'20px 50px'}}>
-      <header className='AuthHeader'>
-        <LogoAnimated />
-        <h1>Med Cabinet</h1>
-      </header>
+    <Container>
+      <Col
+        xs={{ size: 10, offset: 1 }}
+        md={{ size: 8, offset: 2 }}
+        style={{
+          border: "1px solid lightgrey",
+          marginTop: "80px",
+          padding: "20px 50px"
+        }}
+      >
+        <header className="AuthHeader">
+          <LogoAnimated />
+          <h1>Med Cabinet</h1>
+        </header>
         <Form>
           <div>
             <Field
@@ -29,7 +37,9 @@ const Login = props => {
               placeholder="username..."
               className="FormTextInput"
             />
-            {props.touched.username && props.errors.username && <p className='error'>{props.errors.username}</p>}
+            {props.touched.username && props.errors.username && (
+              <p className="error">{props.errors.username}</p>
+            )}
           </div>
           <div>
             <Field
@@ -38,7 +48,9 @@ const Login = props => {
               placeholder="password..."
               className="FormTextInput"
             />
-            {props.touched.password && props.errors.password && <p className='error'>{props.errors.password}</p>}
+            {props.touched.password && props.errors.password && (
+              <p className="error">{props.errors.password}</p>
+            )}
           </div>
           <Button type="submit" color="primary" className="AuthButton">
             Login!{" "}
@@ -64,21 +76,25 @@ const Login = props => {
 };
 
 export default withFormik({
-  mapPropsToValues({username, password}){
-    return{
-      username: username || '',
-      password: password || ''
-    }
+  mapPropsToValues({ username, password }) {
+    return {
+      username: username || "",
+      password: password || ""
+    };
   },
   validationSchema: Yup.object().shape({
-    username: Yup.string().min(4,'Username must be at least 4 characters.').required('Name is required.'),
-    password: Yup.string().min(6, 'Password must be at least 6 characters.').required('Password is required.'),
+    username: Yup.string()
+      .min(4, "Username must be at least 4 characters.")
+      .required("Name is required."),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters.")
+      .required("Password is required.")
   }),
-  handleSubmit(values, {setStatus, props}){
+  handleSubmit(values, { setStatus, props }) {
     const URL = "https://medicalcabinet.herokuapp.com/api/auth/login";
     // const fakeToken = "this is a fake token this is a bad";
 
-    console.log('formik submitted with values:');
+    console.log("formik submitted with values:");
     console.log(values);
 
     axios
@@ -86,8 +102,8 @@ export default withFormik({
       .then(res => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
-        props.history.push("/helloworld");
+        props.history.push("/dashboard");
       })
       .catch(err => console.log(err.response));
   }
-})(Login)
+})(Login);
