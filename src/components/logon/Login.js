@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import {Container, Row, Col, Button, Form, Input} from 'reactstrap';
+import { Container, Row, Col, Button, Form, Input } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
 
 const Login = props => {
-  const intialValues = {
+  const initialValues = {
     username: "",
     password: ""
   };
 
-  const [credentials, setCredentials] = useState(intialValues);
+  const [credentials, setCredentials] = useState(initialValues);
   const handleChange = e => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
@@ -27,7 +27,7 @@ const Login = props => {
     //   .catch(err => console.log(err.response));
     localStorage.setItem("token", fakeToken);
     props.history.push("/helloworld");
-    setCredentials(intialValues);
+    setCredentials(initialValues);
   };
 
   const routeChange = () => {
@@ -37,10 +37,10 @@ const Login = props => {
 
   return (
     <Container>
-      <Col  xs={{ size: 10, offset: 1 }} md={{size: 6, offset: 3}}>
-      <header className='AuthHeader'>
-        <h1>Med Cabinet</h1>
-      </header>
+      <Col xs={{ size: 10, offset: 1 }} md={{ size: 6, offset: 3 }}>
+        <header className="AuthHeader">
+          <h1>Med Cabinet</h1>
+        </header>
         <Form onSubmit={submitLogin}>
           <div>
             <label htmlFor="username"></label>
@@ -64,16 +64,23 @@ const Login = props => {
               className="FormTextInput"
             />
           </div>
-            <Button type="submit" color="primary" className="AuthButton">
-              Login!{" "}
-              <span role="img" aria-label="PalmTree">
-                🌴
-              </span>
-            </Button>
+          <Button type="submit" color="primary" className="AuthButton">
+            Login!{" "}
+            <span role="img" aria-label="PalmTree">
+              🌴
+            </span>
+          </Button>
         </Form>
         <Col xs={{ size: 11, offset: 0.5 }} className="SwitchAuthPageWrapper">
           <span>Don't have an account?</span>
-          <Button onClick={routeChange} outline color="primary" className="SwitchAuthButton">Sign up</Button>
+          <Button
+            onClick={routeChange}
+            outline
+            color="primary"
+            className="SwitchAuthButton"
+          >
+            Sign up
+          </Button>
         </Col>
       </Col>
     </Container>
