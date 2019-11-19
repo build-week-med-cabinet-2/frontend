@@ -16,6 +16,8 @@ import {
 
 import styled from "styled-components";
 
+import LogoAnimated from '../LogoAnimated';
+
 const CustomNavBar = styled(Navbar)`
   background: teal;
 `;
@@ -28,6 +30,7 @@ const NavBar = props => {
   return (
     <div>
       <CustomNavBar color="teal" dark expand="md">
+        <LogoAnimated color='contrast' nav={true}/>
         <NavbarBrand href="">Med Cabinet</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
