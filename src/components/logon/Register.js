@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {Container, Row, Col, Button, Form, Input} from 'reactstrap';
+import { Container, Row, Col, Button, Form, Input } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
 
 const Register = props => {
@@ -17,17 +17,19 @@ const Register = props => {
   };
   const submitRegister = e => {
     e.preventDefault();
-    const URL = "https://ourheroku.database/";
-    const fakeToken = "this is a fake token this is bad";
-    // axios
-    //   .post(`${URL}login`, credentials)
-    //   .then(res => {
-    //     localStorage.setItem("token", fakeToken);
-    //     props.history.push("/helloworld");
-    //   })
-    //   .catch(err => console.log(err.response));
-    localStorage.setItem("token", fakeToken);
-    props.history.push("/intake/ailments");
+    const URL = "https://medicalcabinet.herokuapp.com/api/auth/register";
+    const newUser = {
+      username: credentials.username,
+      password: credentials.password
+    };
+    // const fakeToken = "this is a fake token this is bad";
+    axios
+      .post(`${URL}`, newUser)
+      .then(res => {
+        console.log(`success`, res);
+        routeChange();
+      })
+      .catch(err => console.log(err.response));
     setCredentials(initialValues);
   };
 
@@ -38,12 +40,12 @@ const Register = props => {
 
   return (
     <Container className="Register-Form-Wrapper">
-      <Col xs={{ size: 10, offset: 1 }} md={{size: 6, offset: 3}}>
-        <header className='AuthHeader'>
+      <Col xs={{ size: 10, offset: 1 }} md={{ size: 6, offset: 3 }}>
+        <header className="AuthHeader">
           <h1>Med Cabinet</h1>
         </header>
         <Form onSubmit={submitRegister}>
-          <label htmlFor="username"/>
+          <label htmlFor="username" />
           <Input
             type="text"
             name="username"
@@ -52,7 +54,7 @@ const Register = props => {
             placeholder="username..."
             className="FormTextInput"
           />
-          <label htmlFor="password"/>
+          <label htmlFor="password" />
           <Input
             type="password"
             name="password"
@@ -61,7 +63,7 @@ const Register = props => {
             placeholder="password..."
             className="FormTextInput"
           />
-          <label htmlFor="repeat password"/>
+          <label htmlFor="repeat password" />
           <Input
             type="password"
             name="repeatPassword"
@@ -79,7 +81,14 @@ const Register = props => {
         </Form>
         <Col xs={{ size: 11, offset: 0.5 }} className="SwitchAuthPageWrapper">
           <span>Already have an account?</span>
-          <Button outline onClick={routeChange} color="primary" className="SwitchAuthButton">Login</Button>
+          <Button
+            outline
+            onClick={routeChange}
+            color="primary"
+            className="SwitchAuthButton"
+          >
+            Login
+          </Button>
         </Col>
       </Col>
     </Container>
