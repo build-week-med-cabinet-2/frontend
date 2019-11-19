@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function QuickDosageEntry() {
-  return <div></div>;
+  return <div>Hello from quick dosage</div>;
 }
