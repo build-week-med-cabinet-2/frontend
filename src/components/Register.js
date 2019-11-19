@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {Container, Row, Col, Button, Form, Input} from 'reactstrap';
+import "bootstrap/dist/css/bootstrap.css";
 
 const Register = props => {
   const initialValues = {
@@ -28,41 +30,59 @@ const Register = props => {
     props.history.push("/helloworld");
     setCredentials(initialValues);
   };
+
+  const routeChange = () => {
+    let path = "/";
+    props.history.push(path);
+  };
+
   return (
-    <div className="Register-Form-Wrapper">
-      <form onSubmit={submitRegister}>
-        <label htmlFor="username">username</label>
-        <input
-          type="text"
-          name="username"
-          onChange={handleChange}
-          value={credentials.username}
-          placeholder="username..."
-        />
-        <label htmlFor="password">password</label>
-        <input
-          type="password"
-          name="password"
-          onChange={handleChange}
-          value={credentials.password}
-          placeholder="password..."
-        />
-        <label htmlFor="repeat password">repeat password</label>
-        <input
-          type="password"
-          name="repeatPassword"
-          onChange={handleChange}
-          value={credentials.repeatPassword}
-          placeholder="repeat password..."
-        />
-        <button type="submit">
-          Register!{" "}
-          <span role="img" aria-label="PalmTree">
-            🌴
-          </span>
-        </button>
-      </form>
-    </div>
+    <Container className="Register-Form-Wrapper">
+      <Col xs={{ size: 10, offset: 1 }} md={{size: 6, offset: 3}}>
+        <header className='AuthHeader'>
+          <h1>Med Cabinet</h1>
+        </header>
+        <Form onSubmit={submitRegister}>
+          <label htmlFor="username"/>
+          <Input
+            type="text"
+            name="username"
+            onChange={handleChange}
+            value={credentials.username}
+            placeholder="username..."
+            className="FormTextInput"
+          />
+          <label htmlFor="password"/>
+          <Input
+            type="password"
+            name="password"
+            onChange={handleChange}
+            value={credentials.password}
+            placeholder="password..."
+            className="FormTextInput"
+          />
+          <label htmlFor="repeat password"/>
+          <Input
+            type="password"
+            name="repeatPassword"
+            onChange={handleChange}
+            value={credentials.repeatPassword}
+            placeholder="repeat password..."
+            className="FormTextInput"
+          />
+          <Button type="submit" color="primary" className="AuthButton">
+            Register!{" "}
+            <span role="img" aria-label="PalmTree">
+              🌴
+            </span>
+          </Button>
+        </Form>
+        <Col xs={{ size: 11, offset: 0.5 }} className="SwitchAuthPageWrapper">
+          <span>Already have an account?</span>
+          <Button outline onClick={routeChange} color="primary" className="SwitchAuthButton">Login</Button>
+        </Col>
+      </Col>
+    </Container>
   );
 };
 
