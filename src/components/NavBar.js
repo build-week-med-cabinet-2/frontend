@@ -3,11 +3,12 @@ import React, {useState} from 'react';
 import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,
     NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, 
     DropdownItem } from 'reactstrap';
-
 import styled from 'styled-components';
 
+import LogoAnimated from './LogoAnimated';
+
 const CustomNavBar = styled(Navbar)`
-    background: teal;
+    background: #38B2AC;
 
 `
 
@@ -18,7 +19,8 @@ const NavBar = props => {
 
     return (
         <div>
-            <CustomNavBar color="teal" dark expand="md">
+            <CustomNavBar color="" dark expand="md">
+                <LogoAnimated color='contrast' nav={true}/>
                 <NavbarBrand href="">Med Cabinet</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>

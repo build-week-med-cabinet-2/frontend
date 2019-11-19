@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {Container, Row, Col, Button, Form, Input} from 'reactstrap';
+import {Container, Row, Col, Button, Form, Input, Card} from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.css";
+
+import LogoAnimated from './LogoAnimated';
 
 const Register = props => {
   const initialValues = {
@@ -38,8 +40,12 @@ const Register = props => {
 
   return (
     <Container className="Register-Form-Wrapper">
-      <Col xs={{ size: 10, offset: 1 }} md={{size: 6, offset: 3}}>
+      <Card>
+
+      </Card>
+      <Col xs={{ size: 10, offset: 1 }} md={{size: 8, offset: 2}} style={{border:'1px solid lightgrey', marginTop:'80px', padding:'20px 50px'}}>
         <header className='AuthHeader'>
+          <LogoAnimated />
           <h1>Med Cabinet</h1>
         </header>
         <Form onSubmit={submitRegister}>
