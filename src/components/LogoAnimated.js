@@ -1,6 +1,9 @@
 import React, {useRef, useEffect} from 'react';
 import {TweenMax, Linear} from 'gsap';
 import styled from 'styled-components';
+import CSSPlugin from 'gsap/CSSPlugin';
+
+const C = CSSPlugin;  // here is the gotcha....
 
 const LogoAnimated = props => {
     let logo = useRef(null);
