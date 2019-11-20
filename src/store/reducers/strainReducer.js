@@ -6,33 +6,35 @@ const initialState = {
       id: 0,
       name: "OG Kush",
       type: "hybrid",
-      description: "mild stuff",
-      benefit: "helps with pain",
-      dosageRec: "5mg"
+      rating: 4.4,
+      effects: "Relaxed, Hungry, Uplifted",
+      description: "mild stuff"
     },
     {
       id: 1,
       name: "Tangie",
       type: "sativa",
-      description: "strong stuff",
-      benefit: "helps with pain a lot",
-      dosageRec: "3mg"
+      rating: 4.1,
+      effects: "Happy, Hungry, Focused",
+      description: "strong stuff"
     },
     {
       name: "Bubba Kush",
       type: "indica",
+      rating: 4.7,
+      effects: "Sleepy, Hungry, Uplifted",
       description: "pretty mild stuff",
-      benefit: "helps with anxiety",
-      dosageRec: "8mg"
+      benefit: "helps with anxiety"
     }
   ],
   savedStrains: [
     {
       name: "Bubba Kush",
       type: "indica",
+      rating: 4.7,
+      effects: "Relaxed, Hungry, Uplifted",
       description: "pretty mild stuff",
-      benefit: "helps with anxiety",
-      dosageRec: "8mg"
+      benefit: "helps with anxiety"
     }
   ]
 };
