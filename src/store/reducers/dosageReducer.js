@@ -17,7 +17,7 @@ export const dosageReducer = (state = initialState, action) => {
     case Types.ADD_LOG_TO_DOSAGE_LOGS:
       const newEntry = action.payload;
       const entry = { ...newEntry, id: Date.now() };
-      return { ...state, dosagesLogs: [...state.entries, entry] };
+      return { ...state, entries: [...state.entries, entry] };
     default:
       return state;
   }
