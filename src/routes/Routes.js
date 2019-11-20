@@ -6,7 +6,9 @@ import Register from "../components/logon/Register";
 import HelloWorld from "../components/HelloWorld";
 import StrainForm from "../components/StrainForm";
 import { Ailments } from "../components/intake/Ailments";
+import Strains from "../components/strainRecommender/Strains";
 import Display from "../components/dashboard/Display";
+import Recommendations from "../components/strainRecommender/Recommendations";
 
 const Routes = () => {
   return (
@@ -16,6 +18,11 @@ const Routes = () => {
       <PrivateRoute path="/helloworld" exact component={HelloWorld} />
       <PrivateRoute path="/strainform" exact component={StrainForm} />
       <PrivateRoute path="/intake/ailments" exact component={Ailments} />
+      <PrivateRoute
+        path="/strainrecommendations"
+        exact
+        component={Recommendations}
+      />
       <PrivateRoute path="/dashboard" exact component={Display} />
     </>
   );
