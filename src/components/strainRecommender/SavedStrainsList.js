@@ -1,9 +1,18 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import Strain from "./Strain";
 
-export default function SavedStrainsList() {
+const SavedStrainsList = () => {
+  const savedStrains = useSelector(state => state.strains.savedStrains);
+
   return (
     <>
-      <div>Users SaveStrains will go here</div>
+      <h2>Saved Strains</h2>
+      {savedStrains.map((item, index) => (
+        <Strain strain={item} key={index} />
+      ))}
     </>
   );
-}
+};
+
+export default SavedStrainsList;

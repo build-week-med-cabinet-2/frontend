@@ -1,3 +1,6 @@
+import * as Types from "../actions";
+import { types } from "@babel/core";
+
 const initialState = {
   strains: [
     {
@@ -23,11 +26,26 @@ const initialState = {
       benefit: "helps with anxiety",
       dosageRec: "8mg"
     }
-  ]
+  ],
+  savedStrains: []
 };
 
 export const strainReducer = (state = initialState, action) => {
   switch (action.type) {
+    case Types.ADD_STRAIN_TO_USER_SAVED:
+      const strain = action.payload;
+      console.log(strain);
+      return {
+        ...state,
+        savedStrains: [...state.savedStrains, strain]
+      };
+    case Types.REMOVE_STRAIN_FROM_USER_SAVED:
+      return {
+        ...state,
+        savedStrains: [
+          ...state.savedStrains.filter(obj => obj.id !== action.payload.id)
+        ]
+      };
     default:
       return state;
   }
