@@ -14,37 +14,64 @@ const AilmentForm = ({values, errors, touched, status}) => {
 
   return (
     <>
-      <div className="formWrapper">
+      <div className="formWrapper" style={{margin: '40px'}}>
         <Form>
-          <label htmlFor="ailmentName">Ailment</label>
-          <Field
-            type="text"
-            name="ailmentName"
-            placeholder="Ailement Name"
-            value={values.ailmentName}
-          />
-          {touched.ailmentName && errors.ailmentName && <p>{errors.ailmentName}</p>}
-          <label htmlFor="yearsUse">Years of Pharma Use</label>
+          <br/>
+          <h3>Enter information of an ailment you would like help with:</h3>
+          <label htmlFor="ailment">Ailment</label>
+          <br/>
+          <Field as="select" name="ailment" value={values.ailment}>
+            <option disabled value="select">Select Ailment</option>
+            <option value="pain" >Pain</option>
+            <option value="stress" >Stress</option>
+            <option value="insomnia" >Insomnia</option>
+            <option value="other" >Other (please describe below)</option>
+          </Field>
+          {/* {touched.yearsUse && errors.yearsUse && <p>{errors.yearsUse}</p>} */}
+          <br/>
+          <br/>
+
+          <label htmlFor="severity">Severity</label>
+          <br/>
+          <Field as="select" name="severity" value={values.severity}>
+            <option disabled value="select" >Select Severity</option>
+            <option value="low" >Mild</option>
+            <option value="medium" >Moderate</option>
+            <option value="high" >Severe</option>
+          </Field>
+          {/* {touched.yearsUse && errors.yearsUse && <p>{errors.yearsUse}</p>} */}
+          <br/>
+          <br/>
+
+          <label htmlFor="pharmaUse">Years of Pharma Use</label>
+          <br/>
           <Field
             type="number"
             min="0"
             max="100"
-            name="yearsUse"
+            name="pharmaUse"
             placeholder="0"
-            value={values.yearsUse}
+            value={values.pharmaUse}
           />
-          {touched.yearsUse && errors.yearsUse && <p>{errors.yearsUse}</p>}
-          <label htmlFor="painLevel">Pain Level</label>
+          {/* {touched.yearsUse && errors.yearsUse && <p>{errors.yearsUse}</p>} */}
+          <br/>
+          <br/>
+
+          <label htmlFor="description">Description (optional)</label>
+          <br/>
           <Field
-            type="number"
-            min="0"
-            max="10"
-            name="painLevel"
-            placeholder="0"
-            value={values.painLevel}
+            component="textarea"
+            name="description"
+            placeholder="Description..."
+            value={values.description}
+            style={{minWidth:'30rem', minHeight:'5rem'}}
           />
-          {touched.painLevel && errors.painLevel && <p>{errors.painLevel}</p>}
-          <button type="submit">Add Ailment</button>
+          {/* {touched.ailmentName && errors.ailmentName && <p>{errors.ailmentName}</p>} */}
+          <br/>
+          <br/>
+
+          <button type="submit">Submit</button>
+          <hr/>
         </Form>
       </div>
     </>
@@ -52,20 +79,24 @@ const AilmentForm = ({values, errors, touched, status}) => {
 };
 
 export default withFormik({
-  mapPropsToValues({ailmentName, yearsUse, painLevel}){
+  mapPropsToValues({ailment, severity, pharmaUse, description}){
     return{
-      ailmentName: ailmentName || '',
-      yearsUse: yearsUse || 0,
-      painLevel: painLevel || 0
+      ailment: ailment || 'select',
+      severity: severity || 'select',
+      pharmaUse: pharmaUse || 0,
+      description: description || ''
     }
   },
   validationSchema: Yup.object().shape({
-    ailmentName: Yup.string().min(4, "Ailment Name must be at least 4 characters").required('Ailment Name required'),
-    yearsUse: Yup.number().min(1, 'Pharma Use of 1 year minimum required').required('Years of Use required'),
-    painLevel: Yup.number().min(1, 'Pain Level of 1 or higher required').required('Pain Level required')
+    ailment: Yup.string().required('Ailment required'),
+    severity: Yup.string().required('Severity required'),
+    pharmaUse: Yup.number().required('Years of Pharma Use required'),
+    description: Yup.string()
   }),
   handleSubmit(values, {setStatus}){
     console.log(values);
+    const ailmentString = `${values.severity} ${values.ailment} with ${values.pharmaUse} years of pharma use : ${values.description}`;
+    console.log(ailmentString);
     setStatus(values);
   }
 })(AilmentForm)
