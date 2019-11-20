@@ -15,3 +15,7 @@ export const addStrainToSaved = strain => {
 export const removeStrainFromSaved = strain => {
   return { type: Types.REMOVE_STRAIN_FROM_USER_SAVED, payload: strain };
 };
+
+export const addEntryToLog = entry => {
+  return { type: Types.ADD_LOG_TO_DOSAGE_LOGS, payload: entry };
+};

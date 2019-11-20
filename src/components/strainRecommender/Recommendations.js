@@ -8,11 +8,17 @@ const QuickFlexWrap = styled.div`
   display: flex;
 `;
 
-const Recommendations = () => {
+const Recommendations = props => {
+  const routeChange = e => {
+    e.preventDefault();
+    let path = "/dashboard";
+    props.history.push(path);
+  };
   return (
     <QuickFlexWrap>
       <Strains />
       <SavedStrainsList />
+      <button onClick={routeChange}>Continue</button>
     </QuickFlexWrap>
   );
 };
