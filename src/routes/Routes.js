@@ -20,7 +20,7 @@ const Routes = () => {
       <PrivateRoute path="/strainform" exact component={StrainForm} />
       <PrivateRoute path="/intake/ailments" exact component={Ailments} />
       <PrivateRoute
-        path="/strainrecommendations"
+        path="/intake/recommendations"
         exact
         component={Recommendations}
       />
