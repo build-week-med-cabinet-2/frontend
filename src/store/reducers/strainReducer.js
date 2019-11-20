@@ -1,5 +1,4 @@
 import * as Types from "../actions";
-import { types } from "@babel/core";
 
 const initialState = {
   strains: [
@@ -27,7 +26,15 @@ const initialState = {
       dosageRec: "8mg"
     }
   ],
-  savedStrains: []
+  savedStrains: [
+    {
+      name: "Bubba Kush",
+      type: "indica",
+      description: "pretty mild stuff",
+      benefit: "helps with anxiety",
+      dosageRec: "8mg"
+    }
+  ]
 };
 
 export const strainReducer = (state = initialState, action) => {

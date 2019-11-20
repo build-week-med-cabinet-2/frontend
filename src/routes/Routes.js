@@ -9,6 +9,7 @@ import { Ailments } from "../components/intake/Ailments";
 import Strains from "../components/strainRecommender/Strains";
 import Display from "../components/dashboard/Display";
 import Recommendations from "../components/strainRecommender/Recommendations";
+import Log from "../components/dosageLog/Log";
 
 const Routes = () => {
   return (
@@ -24,6 +25,7 @@ const Routes = () => {
         component={Recommendations}
       />
       <PrivateRoute path="/dashboard" exact component={Display} />
+      <PrivateRoute path="/logs" exact component={Log} />
     </>
   );
 };

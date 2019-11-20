@@ -10,8 +10,8 @@ export const AilmentList = () => {
       <h2>Ailments</h2>
       {ailments.length ? (
         <ol type="1">
-          {ailments.map(item => (
-            <Ailment key={item.id} ailment={item} />
+          {ailments.map((item, index) => (
+            <Ailment key={index} ailment={item} />
           ))}
         </ol>
       ) : (
