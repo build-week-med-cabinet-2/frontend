@@ -5,6 +5,7 @@ import { TiDelete, TiEdit } from "react-icons/ti";
 
 export const Ailment = props => {
   const { ailment } = props;
+  const { ailmentName, severity, pharmaUse, description } = ailment;
   const dispatch = useDispatch();
 
   const handleRemoveAilment = e => {
@@ -20,9 +21,10 @@ export const Ailment = props => {
       <button>
         <TiEdit />
       </button>
-      <h4>Ailment: {ailment.ailmentName}</h4>
-      <h4>Years use: {ailment.yearsUse}</h4>
-      <h4>Pain Level: {ailment.painLevel}</h4>
+      <h4>Ailment: {ailmentName}</h4>
+      <h4>Years use: {pharmaUse}</h4>
+      <h4>Pain Level: {severity}</h4>
+      <p>Description: {description}</p>
     </>
   );
 };

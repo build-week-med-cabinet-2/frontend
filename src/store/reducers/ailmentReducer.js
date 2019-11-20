@@ -1,24 +1,18 @@
 import * as Types from "../actions";
 
 const initialState = {
-  ailments: [
-    {
-      ailmentName: "AilmentTest",
-      yearsUse: 1,
-      painLevel: 1,
-      id: 0
-    }
-  ]
+  ailments: []
 };
 
 export const ailmentReducer = (state = initialState, action) => {
   switch (action.type) {
     case Types.ADD_AILMENT:
-      const { ailmentName, yearsUse, painLevel } = action.payload;
+      const { ailmentName, severity, pharmaUse, description } = action.payload;
       const newAilment = {
         ailmentName: ailmentName,
-        yearsUse: yearsUse,
-        painLevel: painLevel,
+        pharmaUse: pharmaUse,
+        severity: severity,
+        description: description,
         id: Date.now()
       };
       return {
