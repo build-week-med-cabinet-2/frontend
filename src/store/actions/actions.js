@@ -1,6 +1,7 @@
 import * as Types from "./actionTypes";
 
 export const addAilment = ailment => {
+  console.log(ailment);
   return { type: Types.ADD_AILMENT, payload: ailment };
 };
 
