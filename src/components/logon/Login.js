@@ -102,7 +102,7 @@ export default withFormik({
       .then(res => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
-        props.history.push("/dashboard");
+        props.history.push("/intake/ailments");
       })
       .catch(err => console.log(err.response));
   }
