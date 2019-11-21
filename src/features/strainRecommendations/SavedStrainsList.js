@@ -9,22 +9,22 @@ const SavedStrainsList = props => {
     search: "",
     type: "select"
   });
-  const [searchResults, setSearchResults] = useState(savedStrains);
+  const [searchResults, setSearchResults] = useState([...savedStrains]);
 
   useEffect(() => {
     const lowerCaseSearch = filters.search.toLowerCase();
     let results = savedStrains.filter(
       strain =>
-        strain.name.toLowerCase().includes(lowerCaseSearch) ||
+        strain.strain_name.toLowerCase().includes(lowerCaseSearch) ||
         strain.benefit.toLowerCase().includes(lowerCaseSearch) ||
-        strain.type.toLowerCase().includes(lowerCaseSearch) ||
+        strain.strain_type.toLowerCase().includes(lowerCaseSearch) ||
         strain.description.toLowerCase().includes(lowerCaseSearch)
     );
 
     results = results.filter(
       strain =>
         filters.type === "select" ||
-        strain.type.toLowerCase().includes(filters.type)
+        strain.strain_type.toLowerCase().includes(filters.type)
     );
 
     setSearchResults(results);
@@ -53,7 +53,7 @@ const SavedStrainsList = props => {
           </select>
         </form>
       )}
-      {savedStrains.map((item, index) => (
+      {searchResults.map((item, index) => (
         <Strain strain={item} key={index} allowRemove />
       ))}
     </>
