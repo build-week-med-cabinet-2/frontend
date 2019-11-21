@@ -37,7 +37,7 @@ const Strain = props => {
         </Col>
         <Col md={8}>
           <CardBody>
-            <CardTitle>{name}<span> - {type} - {rating}</span></CardTitle>
+            <CardTitle style={{fontSize:'1.6rem'}}>{name}<span style={{fontSize:'1.4rem'}}> - {type} - {rating}</span></CardTitle>
             <CardSubtitle>{effects}</CardSubtitle>
             <CardText>{description}</CardText>
             {props.allowSave && <Button onClick={addToSaved} className="CustomButtonOutline">Save</Button>}

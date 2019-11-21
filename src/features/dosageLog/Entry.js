@@ -1,16 +1,17 @@
 import React from "react";
-import {Col, Button, Row, Card} from 'reactstrap';
+import {Col, Button, Row, Card, CardBody, CardTitle, CardSubtitle, CardText} from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.css";
 
 const Entry = props => {
-  const { dosageDate, strain, dosageAmount, intakeMethod } = props.entry;
+  const { date, strain, dosageAmount, intakeMethod } = props.entry;
 
   return (
-    <Card>
-      <p>Dose info from dose on {dosageDate}</p>
-      <p>{strain}</p>
-      <p>{dosageAmount}</p>
-      <p>{intakeMethod}</p>
+    <Card style={{margin: '1rem 0'}}>
+      <CardBody>
+            <CardTitle style={{fontSize:'1.6rem'}}>{date}</CardTitle>
+            <CardSubtitle style={{fontSize:'2rem'}}>{strain}</CardSubtitle>
+            <CardText style={{fontSize:'1.4rem'}}>{dosageAmount} mg - {intakeMethod}</CardText>
+        </CardBody>
     </Card>
   );
 };
