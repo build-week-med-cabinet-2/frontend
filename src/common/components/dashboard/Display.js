@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Col, Button } from "reactstrap";
+import { Container, Col, Row, Button } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import QuickDosageEntry from "../../../features/dosageLog/QuickDosageEntry";
 import SavedStrainsList from "../../../features/strainRecommender/SavedStrainsList";
@@ -12,18 +12,22 @@ const Display = props => {
     props.history.push(path);
   };
   return (
-    <div>
-      <QuickDosageEntry />
-      <Log />
+    <Row>
+      <Col xs={6}>
+        <QuickDosageEntry />
+        <Log />
+      </Col >
+      <Col>
       <SavedStrainsList allowSearch />
       <Button
         type="submit"
         className="CustomButtonFilled"
         onClick={routeChange}
       >
-        Redo Intake
+        Find New Strains
       </Button>
-    </div>
+      </Col>
+    </Row>
   );
 };
 

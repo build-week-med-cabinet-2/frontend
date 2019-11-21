@@ -9,11 +9,13 @@ export const AilmentList = () => {
     <>
       <h2>Ailments</h2>
       {ailments.length ? (
-        <ol type="1">
+        // <ol type="1">
+        <>
           {ailments.map((item, index) => (
             <Ailment key={index} ailment={item} />
           ))}
-        </ol>
+        </>
+        // </ol>
       ) : (
         <p>Please Fill out form to add 1 ailment to continue</p>
       )}
