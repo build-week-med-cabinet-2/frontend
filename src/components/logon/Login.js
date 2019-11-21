@@ -60,7 +60,7 @@ const Login = props => {
           onClick={routeChange}
           outline
           color="primary"
-          className="CustomButtonOutline"
+          className="CustomButtonOutline SwitchAuthButton"
         >
           Sign up
         </Button>
