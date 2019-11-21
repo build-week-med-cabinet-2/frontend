@@ -16,7 +16,7 @@ const Recommendations = props => {
   };
   return (
     <QuickFlexWrap>
-      <Strains />
+      <Strains allowRemove={true}/>
       <SavedStrainsList />
       <button onClick={routeChange}>Continue</button>
     </QuickFlexWrap>

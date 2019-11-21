@@ -45,7 +45,7 @@ const SavedStrainsList = () => {
         </select>
       </form>
       {searchResults.map((item, index) => (
-        <Strain strain={item} key={index} />
+        <Strain strain={item} key={index} allowRemove/>
       ))}
     </>
   );

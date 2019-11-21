@@ -5,7 +5,7 @@ import { addStrainToSaved, removeStrainFromSaved } from "../../store/actions";
 const Strain = props => {
   const dispatch = useDispatch();
   const strain = props.strain;
-  const { name, benefit, type, description, dosageRec } = strain;
+  const { name, type, rating, effects, description } = strain;
 
   const addToSaved = e => {
     e.preventDefault();
@@ -20,11 +20,10 @@ const Strain = props => {
   return (
     <div style={{ border: "1px solid lightgrey", width: "30rem" }}>
       <h4>{name}</h4>
-      <p>{benefit}</p>
       <p>{type}</p>
+      <p>{rating}</p>
+      <p>{effects}</p>
       <p>{description}</p>
-      <p>dosage: {dosageRec}</p>
-      {/* <p>rating: {props.data.rating}</p> */}
       {/* <p>
         comments:
         {
@@ -33,8 +32,8 @@ const Strain = props => {
           ))
         }
       </p> */}
-      <button onClick={addToSaved}>Add to saved List</button>
-      <button onClick={removedFromSaved}>Remove from saved List</button>
+      {props.allowSave && <button onClick={addToSaved}>Add to saved List</button>}
+      {props.allowRemove && <button onClick={removedFromSaved}>Remove from saved List</button>}
     </div>
   );
 };
