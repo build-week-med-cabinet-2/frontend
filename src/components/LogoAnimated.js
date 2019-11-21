@@ -1,12 +1,15 @@
 import React, {useRef, useEffect} from 'react';
 import {TweenMax, Linear} from 'gsap';
 import styled from 'styled-components';
+import CSSPlugin from 'gsap/CSSPlugin';
+
+const C = CSSPlugin;  // here is the gotcha....
 
 const LogoAnimated = props => {
     let logo = useRef(null);
 
     useEffect(() => {
-        TweenMax.from(logo, 1, {scale: 0.2})
+        TweenMax.from(logo, 1, {rotation: -360});
     }, [])
 
     function twist(){

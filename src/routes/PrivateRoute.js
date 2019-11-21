@@ -9,7 +9,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
       localStorage.getItem("token") ? (
         <>
           <NavBar />
-          <Component {...props} />
+          <div className="CenteredContainerApp" >
+            <Component {...props} />
+          </div>
         </>
       ) : (
         <Redirect to="/" />

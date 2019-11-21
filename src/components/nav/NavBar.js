@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import {NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -7,7 +7,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
+  // NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -36,13 +36,13 @@ const NavBar = props => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="">Find Strains</NavLink>
+              <NavLink to="/intake/ailments" className="NavLink">Recommender</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">My List</NavLink>
+              <NavLink to="/dashboard" className="NavLink">Dasboard</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">Settings</NavLink>
+              <NavLink to="/settings" className="NavLink">Settings</NavLink>
             </NavItem>
           </Nav>
         </Collapse>

@@ -1,5 +1,4 @@
 import * as Types from "../actions";
-import { types } from "@babel/core";
 
 const initialState = {
   strains: [
@@ -7,27 +6,35 @@ const initialState = {
       id: 0,
       name: "OG Kush",
       type: "hybrid",
-      description: "mild stuff",
-      benefit: "helps with pain",
-      dosageRec: "5mg"
+      rating: 4.4,
+      effects: "Relaxed, Hungry, Uplifted",
+      description: "The potency of this strain gives the consumer a one-two punch to the head and body. Its effects may help with managing nausea, stress, minor body aches, and sleeplessness."
     },
     {
       id: 1,
       name: "Tangie",
       type: "sativa",
-      description: "strong stuff",
-      benefit: "helps with pain a lot",
-      dosageRec: "3mg"
+      rating: 4.1,
+      effects: "Happy, Hungry, Focused",
+      description: "The potency of this strain gives the consumer a one-two punch to the head and body. Its effects may help with managing nausea, stress, minor body aches, and sleeplessness."
     },
     {
       name: "Bubba Kush",
       type: "indica",
-      description: "pretty mild stuff",
-      benefit: "helps with anxiety",
-      dosageRec: "8mg"
+      rating: 4.7,
+      effects: "Sleepy, Hungry, Uplifted",
+      description: "The potency of this strain gives the consumer a one-two punch to the head and body. Its effects may help with managing nausea, stress, minor body aches, and sleeplessness.",
     }
   ],
-  savedStrains: []
+  savedStrains: [
+    {
+      name: "Bubba Kush",
+      type: "indica",
+      rating: 4.7,
+      effects: "Relaxed, Hungry, Uplifted",
+      description: "The potency of this strain gives the consumer a one-two punch to the head and body. Its effects may help with managing nausea, stress, minor body aches, and sleeplessness.",
+    }
+  ]
 };
 
 export const strainReducer = (state = initialState, action) => {

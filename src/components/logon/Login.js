@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Container, Col, Button } from "reactstrap";
+import { Container, Col, Button, Input} from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -15,63 +15,57 @@ const Login = props => {
   };
 
   return (
-    <Container>
-      <Col
-        xs={{ size: 10, offset: 1 }}
-        md={{ size: 8, offset: 2 }}
-        style={{
-          border: "1px solid lightgrey",
-          marginTop: "80px",
-          padding: "20px 50px"
-        }}
-      >
-        <header className="AuthHeader">
-          <LogoAnimated />
-          <h1>Med Cabinet</h1>
-        </header>
-        <Form>
-          <div>
-            <Field
-              type="text"
-              name="username"
-              placeholder="username..."
-              className="FormTextInput"
-            />
-            {props.touched.username && props.errors.username && (
-              <p className="error">{props.errors.username}</p>
-            )}
-          </div>
-          <div>
-            <Field
-              type="password"
-              name="password"
-              placeholder="password..."
-              className="FormTextInput"
-            />
-            {props.touched.password && props.errors.password && (
-              <p className="error">{props.errors.password}</p>
-            )}
-          </div>
-          <Button type="submit" color="primary" className="AuthButton">
-            Login!{" "}
-            <span role="img" aria-label="PalmTree">
-              🌴
-            </span>
-          </Button>
-        </Form>
-        <Col xs={{ size: 11, offset: 0.5 }} className="SwitchAuthPageWrapper">
-          <span>Don't have an account?</span>
-          <Button
-            onClick={routeChange}
-            outline
-            color="primary"
-            className="SwitchAuthButton"
-          >
-            Sign up
-          </Button>
-        </Col>
+    <div className="CenteredContainerLogin" >
+      <header className="AuthHeader">
+        <LogoAnimated />
+        <h1>Med Cabinet</h1>
+      </header>
+      <Form>
+        <div>
+          <Input
+            type="text"
+            name="username"
+            tag={Field}
+            placeholder="username..."
+            className="FormTextInput"
+            invalid={props.touched.username && props.errors.username}
+          />
+          {props.touched.username && props.errors.username && (
+            <p className="error">{props.errors.username}</p>
+          )}
+        </div>
+        <div>
+          <Input
+            type="password"
+            name="password"
+            tag={Field}
+            placeholder="password..."
+            className="FormTextInput"
+            invalid={props.touched.password && props.errors.password}
+          />
+          {props.touched.password && props.errors.password && (
+            <p className="error">{props.errors.password}</p>
+          )}
+        </div>
+        <Button type="submit" color="primary" className="CustomButtonFilled AuthButton">
+          Login!{" "}
+          <span role="img" aria-label="PalmTree">
+            🌴
+          </span>
+        </Button>
+      </Form>
+      <Col xs={{ size: 11, offset: 0.5 }} className="SwitchAuthPageWrapper">
+        <span>Don't have an account?</span>
+        <Button
+          onClick={routeChange}
+          outline
+          color="primary"
+          className="CustomButtonOutline"
+        >
+          Sign up
+        </Button>
       </Col>
-    </Container>
+    </div>
   );
 };
 
@@ -102,7 +96,7 @@ export default withFormik({
       .then(res => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
-        props.history.push("/dashboard");
+        props.history.push("/intake/ailments");
       })
       .catch(err => console.log(err.response));
   }
