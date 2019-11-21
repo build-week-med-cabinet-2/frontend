@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { removeAilment } from "../../store/actions";
+import { removeAilment } from "../../redux/actions";
 import { TiDelete, TiEdit } from "react-icons/ti";
 
 export const Ailment = props => {

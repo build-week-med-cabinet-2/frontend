@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addEntryToLog } from "../../store/actions";
+import { addEntryToLog } from "../../redux/actions";
 import { withFormik, Form, Field } from "formik";
 import { useFormik } from "formik";
 import * as Yup from "yup";
