@@ -11,7 +11,7 @@ import {
   Input,
   FormText
 } from "reactstrap";
-import { addAilment } from "../../redux/actions";
+import { addAilment } from "./ailmentsSlice";
 
 const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
   const dispatch = useDispatch();
@@ -55,7 +55,9 @@ const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
                 <option value="Pain">Pain</option>
                 <option value="Stress">Stress</option>
                 <option value="Insomnia">Insomnia</option>
-                <option value="Other Ailment">Other (please describe below)</option>
+                <option value="Other Ailment">
+                  Other (please describe below)
+                </option>
               </Input>
               {touched.ailmentName && errors.ailmentName && (
                 <p className="error">{errors.ailmentName}</p>
@@ -63,7 +65,7 @@ const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
             </Col>
           </FormGroup>
 
-          <FormGroup row>
+          {/* <FormGroup row>
             <Label for="severity" sm={2}>
               Severity
             </Label>
@@ -85,7 +87,7 @@ const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
                 <p className="error">{errors.severity}</p>
               )}
             </Col>
-          </FormGroup>
+          </FormGroup> */}
 
           <FormGroup row>
             <Label for="description" sm={2}>
@@ -115,14 +117,14 @@ export default withFormik({
   mapPropsToValues({ ailmentName, severity, pharmaUse, description }) {
     return {
       ailmentName: ailmentName || "",
-      severity: severity || "",
+      // severity: severity || "",
       // pharmaUse: pharmaUse || 0,
       description: description || ""
     };
   },
   validationSchema: Yup.object().shape({
     ailmentName: Yup.string().required("Ailment required"),
-    severity: Yup.string().required("Severity required"),
+    // severity: Yup.string().required("Severity required"),
     // pharmaUse: Yup.number().required("Years of Pharma Use required"),
     description: Yup.string()
   }),
