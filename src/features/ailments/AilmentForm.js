@@ -49,14 +49,17 @@ const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
                 id="ailmentName"
                 invalid={touched.ailmentName && errors.ailmentName}
               >
-                <option disabled value="select">
+                <option disabled value="">
                   Select Ailment
                 </option>
-                <option value="pain">Pain</option>
-                <option value="stress">Stress</option>
-                <option value="insomnia">Insomnia</option>
-                <option value="other">Other (please describe below)</option>
+                <option value="Pain">Pain</option>
+                <option value="Stress">Stress</option>
+                <option value="Insomnia">Insomnia</option>
+                <option value="Other Ailment">Other (please describe below)</option>
               </Input>
+              {touched.ailmentName && errors.ailmentName && (
+                <p className="error">{errors.ailmentName}</p>
+              )}
             </Col>
           </FormGroup>
 
@@ -71,13 +74,16 @@ const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
                 name="severity"
                 id="severity"
               >
-                <option disabled value="select">
+                <option disabled value="">
                   Select Severity
                 </option>
-                <option value="mild">Mild</option>
-                <option value="moderate">Moderate</option>
-                <option value="severe">Severe</option>
+                <option value="Mild">Mild</option>
+                <option value="Moderate">Moderate</option>
+                <option value="Severe">Severe</option>
               </Input>
+              {touched.severity && errors.severity && (
+                <p className="error">{errors.severity}</p>
+              )}
             </Col>
           </FormGroup>
 
@@ -87,7 +93,8 @@ const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
             </Label>
             <Col sm={10}>
               <Input
-                type="textarea"
+                tag={Field}
+                component="textarea"
                 name="description"
                 id="description"
                 placeholder="Description..."
@@ -107,21 +114,21 @@ const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
 export default withFormik({
   mapPropsToValues({ ailmentName, severity, pharmaUse, description }) {
     return {
-      ailmentName: ailmentName || "select",
-      severity: severity || "select",
-      pharmaUse: pharmaUse || 0,
+      ailmentName: ailmentName || "",
+      severity: severity || "",
+      // pharmaUse: pharmaUse || 0,
       description: description || ""
     };
   },
   validationSchema: Yup.object().shape({
     ailmentName: Yup.string().required("Ailment required"),
     severity: Yup.string().required("Severity required"),
-    pharmaUse: Yup.number().required("Years of Pharma Use required"),
+    // pharmaUse: Yup.number().required("Years of Pharma Use required"),
     description: Yup.string()
   }),
   handleSubmit(values, { setStatus }) {
     console.log(values);
-    const ailmentString = `${values.severity} ${values.ailment} with ${values.pharmaUse} years of pharma use : ${values.description}`;
+    const ailmentString = `${values.severity} ${values.ailmentName}: ${values.description}`;
     console.log(ailmentString);
     setStatus(values);
   }

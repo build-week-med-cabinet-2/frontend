@@ -2,6 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { removeAilment } from "../../redux/actions";
 import { TiDelete, TiEdit } from "react-icons/ti";
+import {Col, Button, Row, Card} from 'reactstrap';
+import "bootstrap/dist/css/bootstrap.css";
+import { grey } from "ansi-colors";
 
 export const Ailment = props => {
   const { ailment } = props;
@@ -14,17 +17,22 @@ export const Ailment = props => {
   };
 
   return (
-    <>
-      <button onClick={handleRemoveAilment}>
-        <TiDelete />
-      </button>
-      <button>
-        <TiEdit />
-      </button>
-      <h4>Ailment: {ailmentName}</h4>
-      <h4>Years use: {pharmaUse}</h4>
-      <h4>Pain Level: {severity}</h4>
-      <p>Description: {description}</p>
-    </>
+    <Card style={{margin:'1rem 0', padding:'0'}}>
+      <Row noGutters>
+            <Col xs={1} style={{padding: '5px 1rem'}}>
+              <Button onClick={handleRemoveAilment} className="CustomButtonOutline"  style={{fontSize:'2.3rem', border:'1px solid white'}}>
+                <TiDelete />
+              </Button>
+            </Col>
+            <Col xs={11} style={{padding: '1rem 1rem'}}>
+              <h4>{severity} {ailmentName}</h4>
+              <p>Description: {description}</p>
+            </Col>
+            {/* <Button>
+              <TiEdit />
+            </Button> */}
+      </Row>
+    </Card>
+    
   );
 };

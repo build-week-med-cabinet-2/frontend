@@ -81,7 +81,7 @@ const Register = props => {
           outline
           onClick={routeChange}
           color="primary"
-          className="CustomButtonOutline"
+          className="CustomButtonOutline SwitchAuthButton"
         >
           Login
         </Button>
