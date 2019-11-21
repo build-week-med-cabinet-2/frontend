@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Ailment } from "./Ailment";
 
 export const AilmentList = () => {
-  const ailments = useSelector(state => state.ailments.ailments);
+  const ailments = useSelector(state => state.ailments);
 
   return (
     <>
