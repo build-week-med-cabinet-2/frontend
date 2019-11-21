@@ -1,4 +1,7 @@
 import React from "react";
+import {Container, Col, Button} from 'reactstrap';
+import "bootstrap/dist/css/bootstrap.css";
+
 import QuickDosageEntry from "../dosageLog/QuickDosageEntry";
 import SavedStrainsList from "../strainRecommender/SavedStrainsList";
 import Log from "../dosageLog/Log";
@@ -13,8 +16,8 @@ const Display = props => {
     <div>
       <QuickDosageEntry />
       <Log />
-      <SavedStrainsList />
-      <button onClick={routeChange}>Redo Intake</button>
+      <SavedStrainsList allowSearch/>
+      <Button type="submit" className="CustomButtonFilled" onClick={routeChange}>Redo Intake</Button>
     </div>
   );
 };

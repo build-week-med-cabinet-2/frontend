@@ -8,7 +8,7 @@ const initialState = {
       type: "hybrid",
       rating: 4.4,
       effects: "Relaxed, Hungry, Uplifted",
-      description: "mild stuff"
+      description: "The potency of this strain gives the consumer a one-two punch to the head and body. Its effects may help with managing nausea, stress, minor body aches, and sleeplessness."
     },
     {
       id: 1,
@@ -16,15 +16,14 @@ const initialState = {
       type: "sativa",
       rating: 4.1,
       effects: "Happy, Hungry, Focused",
-      description: "strong stuff"
+      description: "The potency of this strain gives the consumer a one-two punch to the head and body. Its effects may help with managing nausea, stress, minor body aches, and sleeplessness."
     },
     {
       name: "Bubba Kush",
       type: "indica",
       rating: 4.7,
       effects: "Sleepy, Hungry, Uplifted",
-      description: "pretty mild stuff",
-      benefit: "helps with anxiety"
+      description: "The potency of this strain gives the consumer a one-two punch to the head and body. Its effects may help with managing nausea, stress, minor body aches, and sleeplessness.",
     }
   ],
   savedStrains: [
@@ -33,8 +32,7 @@ const initialState = {
       type: "indica",
       rating: 4.7,
       effects: "Relaxed, Hungry, Uplifted",
-      description: "pretty mild stuff",
-      benefit: "helps with anxiety"
+      description: "The potency of this strain gives the consumer a one-two punch to the head and body. Its effects may help with managing nausea, stress, minor body aches, and sleeplessness.",
     }
   ]
 };
