@@ -6,7 +6,7 @@ import Register from "../../features/logon/Register";
 import HelloWorld from "../../common/components/HelloWorld";
 import StrainForm from "../../features/StrainForm";
 import { Ailments } from "../../features/ailments/Ailments";
-import Strains from "../../features/strainRecommender/Strains";
+import Strains from "../../features/strains/Strains";
 import Display from "../../common/components/dashboard/Display";
 import Recommendations from "../../features/strainRecommender/Recommendations";
 import Log from "../../features/dosageLog/Log";
@@ -26,6 +26,7 @@ const Routes = () => {
       />
       <PrivateRoute path="/dashboard" exact component={Display} />
       <PrivateRoute path="/logs" exact component={Log} />
+      <PrivateRoute path="/strains" exact component={Strains} />
     </>
   );
 };
