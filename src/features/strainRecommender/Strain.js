@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addStrainToSaved, removeStrainFromSaved } from "../../store/actions";
+import { addStrainToSaved, removeStrainFromSaved } from "../../redux/actions";
 
 const Strain = props => {
   const dispatch = useDispatch();
@@ -32,8 +32,12 @@ const Strain = props => {
           ))
         }
       </p> */}
-      {props.allowSave && <button onClick={addToSaved}>Add to saved List</button>}
-      {props.allowRemove && <button onClick={removedFromSaved}>Remove from saved List</button>}
+      {props.allowSave && (
+        <button onClick={addToSaved}>Add to saved List</button>
+      )}
+      {props.allowRemove && (
+        <button onClick={removedFromSaved}>Remove from saved List</button>
+      )}
     </div>
   );
 };

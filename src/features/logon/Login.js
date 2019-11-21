@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 
-import LogoAnimated from ".././LogoAnimated";
+import LogoAnimated from "../../common/components/LogoAnimated";
 
 const Login = props => {
   const routeChange = () => {

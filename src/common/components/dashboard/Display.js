@@ -1,7 +1,7 @@
 import React from "react";
-import QuickDosageEntry from "../dosageLog/QuickDosageEntry";
-import SavedStrainsList from "../strainRecommender/SavedStrainsList";
-import Log from "../dosageLog/Log";
+import QuickDosageEntry from "../../../features/dosageLog/QuickDosageEntry";
+import SavedStrainsList from "../../../features/strainRecommender/SavedStrainsList";
+import Log from "../../../features/dosageLog/Log";
 
 const Display = props => {
   const routeChange = e => {

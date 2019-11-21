@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {Container, Col, Button} from 'reactstrap';
+import { Container, Col, Button } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
-import {withFormik, Form, Field} from 'formik';
-import * as Yup from 'yup';
+import { withFormik, Form, Field } from "formik";
+import * as Yup from "yup";
 
-import LogoAnimated from '.././LogoAnimated';
+import LogoAnimated from "../../common/components/LogoAnimated";
 
 const Register = props => {
   const routeChange = () => {
@@ -15,8 +15,16 @@ const Register = props => {
 
   return (
     <Container className="Register-Form-Wrapper">
-      <Col xs={{ size: 10, offset: 1 }} md={{size: 8, offset: 2}} style={{border:'1px solid lightgrey', marginTop:'80px', padding:'20px 50px'}}>
-        <header className='AuthHeader'>
+      <Col
+        xs={{ size: 10, offset: 1 }}
+        md={{ size: 8, offset: 2 }}
+        style={{
+          border: "1px solid lightgrey",
+          marginTop: "80px",
+          padding: "20px 50px"
+        }}
+      >
+        <header className="AuthHeader">
           <LogoAnimated />
           <h1>Med Cabinet</h1>
         </header>
@@ -66,19 +74,25 @@ const Register = props => {
 };
 
 export default withFormik({
-  mapPropsToValues({username, password, repeatPassword}){
-    return{
-      username: username || '',
-      password: password || '',
-      repeatPassword: repeatPassword || '',
-    }
+  mapPropsToValues({ username, password, repeatPassword }) {
+    return {
+      username: username || "",
+      password: password || "",
+      repeatPassword: repeatPassword || ""
+    };
   },
   validationSchema: Yup.object().shape({
-    username: Yup.string().min(4,'Username must be at least 4 characters.').required('Name is required.'),
-    password: Yup.string().min(6, 'Password must be at least 6 characters.').required('Password is required.'),
-    password: Yup.string().min(6, 'Password must be at least 6 characters.').required('Password is required.'),
+    username: Yup.string()
+      .min(4, "Username must be at least 4 characters.")
+      .required("Name is required."),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters.")
+      .required("Password is required."),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters.")
+      .required("Password is required.")
   }),
-  handleSubmit(values, {setStatus, props}){
+  handleSubmit(values, { setStatus, props }) {
     const URL = "https://medicalcabinet.herokuapp.com/api/auth/register";
     const newUser = {
       username: values.username,
@@ -93,4 +107,4 @@ export default withFormik({
       })
       .catch(err => console.log(err.response));
   }
-})(Register)
+})(Register);

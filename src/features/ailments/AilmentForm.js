@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { withFormik, Form, Field, Formik } from "formik";
 import * as Yup from "yup";
-
-import { addAilment } from "../../store/actions";
+import { addAilment } from "../../redux/actions";
 
 const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
   const dispatch = useDispatch();

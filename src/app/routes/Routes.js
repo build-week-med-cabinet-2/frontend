@@ -1,15 +1,15 @@
 import React from "react";
 import { Route } from "react-router";
 import PrivateRoute from "./PrivateRoute";
-import Login from "../components/logon/Login";
-import Register from "../components/logon/Register";
-import HelloWorld from "../components/HelloWorld";
-import StrainForm from "../components/StrainForm";
-import { Ailments } from "../components/ailments/Ailments";
-import Strains from "../components/strainRecommender/Strains";
-import Display from "../components/dashboard/Display";
-import Recommendations from "../components/strainRecommender/Recommendations";
-import Log from "../components/dosageLog/Log";
+import Login from "../../features/logon/Login";
+import Register from "../../features/logon/Register";
+import HelloWorld from "../../common/components/HelloWorld";
+import StrainForm from "../../features/StrainForm";
+import { Ailments } from "../../features/ailments/Ailments";
+import Strains from "../../features/strainRecommender/Strains";
+import Display from "../../common/components/dashboard/Display";
+import Recommendations from "../../features/strainRecommender/Recommendations";
+import Log from "../../features/dosageLog/Log";
 
 const Routes = () => {
   return (
