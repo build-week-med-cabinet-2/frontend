@@ -9,7 +9,7 @@ const LogoAnimated = props => {
     let logo = useRef(null);
 
     useEffect(() => {
-        TweenMax.from(logo, 1, {scale: 0.2})
+        TweenMax.from(logo, 1, {rotation: -360});
     }, [])
 
     function twist(){

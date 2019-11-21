@@ -1,6 +1,8 @@
 import React from "react";
 import AilmentForm from "./AilmentForm";
 import { AilmentList } from "./AilmentList";
+import { Container, Col, Button} from "reactstrap";
+import "bootstrap/dist/css/bootstrap.css";
 
 export const Ailments = props => {
   const routeChange = e => {
@@ -11,9 +13,11 @@ export const Ailments = props => {
   return (
     <>
       <AilmentForm />
+      <hr/>
       <AilmentList />
+      <hr/>
       <div>
-        <button onClick={routeChange}>Continue</button>
+        <Button onClick={routeChange} className="CustomButtonFilled">Continue</Button>
       </div>
     </>
   );

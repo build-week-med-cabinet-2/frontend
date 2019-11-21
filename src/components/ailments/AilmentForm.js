@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { withFormik, Form, Field, Formik } from "formik";
+import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
+import { Col, Button, Form as StrapForm, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 import { addAilment } from "../../store/actions";
 
@@ -24,89 +25,43 @@ const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
 
   return (
     <>
-      <div className="formWrapper" style={{ margin: "40px" }}>
+      <div className="FormWrapper">
         <Form>
-          <br />
-          <h3>Enter information of an ailment you would like help with:</h3>
-          <label htmlFor="ailment">Ailment</label>
-          <br />
-          <select
-            name="ailmentName"
-            value={values.ailmentName}
-            onChange={handleChange}
-          >
-            <option disabled value="select">
-              Select Ailment
-            </option>
-            <option value="pain">Pain</option>
-            <option value="stress">Stress</option>
-            <option value="insomnia">Insomnia</option>
-            <option value="other">Other (please describe below)</option>
-            {errors.color && touched.color && (
-              <div className="input-feedback">{errors.color}</div>
-            )}
-          </select>
-          {/* <Field
-            as="select"
-            name="ailment"
-            value={values.ailment}
-            onChange={Formik.handleSelectChange}
-          >
-            <option disabled value="select">
-              Select Ailment
-            </option>
-            <option value="pain">Pain</option>
-            <option value="stress">Stress</option>
-            <option value="insomnia">Insomnia</option>
-            <option value="other">Other (please describe below)</option>
-          </Field> */}
-          {/* {touched.yearsUse && errors.yearsUse && <p>{errors.yearsUse}</p>} */}
+          <h3>Please enter information of an ailment you would like help with.</h3>
+          <FormGroup row>
+            <Label for="ailmentName" sm={2}>Ailment</Label>
+            <Col sm={10}>
+              <Input tag={Field} component="select" name="ailmentName" id="ailmentName" invalid={touched.ailmentName && errors.ailmentName}>
+                <option disabled value="select">Select Ailment</option>
+                <option value="pain">Pain</option>
+                <option value="stress">Stress</option>
+                <option value="insomnia">Insomnia</option>
+                <option value="other">Other (please describe below)</option>
+              </Input>
+            </Col>
+          </FormGroup>
+          
+          <FormGroup row>
+            <Label for="severity" sm={2}>Severity</Label>
+            <Col sm={10}>
+              <Input tag={Field} component="select" name="severity" id="severity">
+                <option disabled value="select">Select Severity</option>
+                <option value="mild">Mild</option>
+                <option value="moderate">Moderate</option>
+                <option value="severe">Severe</option>
+              </Input>
+            </Col>
+          </FormGroup>
 
-          <br />
-          <br />
-          <label htmlFor="severity">Severity</label>
-          <br />
-          <Field as="select" name="severity" value={values.severity}>
-            <option disabled value="select">
-              Select Severity
-            </option>
-            <option value="low">Mild</option>
-            <option value="medium">Moderate</option>
-            <option value="high">Severe</option>
-          </Field>
-          {/* {touched.yearsUse && errors.yearsUse && <p>{errors.yearsUse}</p>} */}
-          <br />
-          <br />
+          <FormGroup row>
+            <Label for="description" sm={2}>Description (optional)</Label>
+            <Col sm={10}>
+              <Input type="textarea" name="description" id="description" placeholder="Description..."/>
+            </Col>
+          </FormGroup>
+          
+          <Button type="submit" className="CustomButtonOutline">Submit</Button>
 
-          <label htmlFor="pharmaUse">Years of Pharma Use</label>
-          <br />
-          <Field
-            type="number"
-            min="0"
-            max="100"
-            name="pharmaUse"
-            placeholder="0"
-            value={values.pharmaUse}
-          />
-          {/* {touched.yearsUse && errors.yearsUse && <p>{errors.yearsUse}</p>} */}
-          <br />
-          <br />
-
-          <label htmlFor="description">Description (optional)</label>
-          <br />
-          <Field
-            component="textarea"
-            name="description"
-            placeholder="Description..."
-            value={values.description}
-            style={{ minWidth: "30rem", minHeight: "5rem" }}
-          />
-          {/* {touched.ailmentName && errors.ailmentName && <p>{errors.ailmentName}</p>} */}
-          <br />
-          <br />
-
-          <button type="submit">Submit</button>
-          <hr />
         </Form>
       </div>
     </>
