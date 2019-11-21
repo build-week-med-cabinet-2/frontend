@@ -114,8 +114,8 @@ const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
 export default withFormik({
   mapPropsToValues({ ailmentName, severity, pharmaUse, description }) {
     return {
-      ailmentName: ailmentName || "Stress",
-      severity: severity || "Moderate",
+      ailmentName: ailmentName || "",
+      severity: severity || "",
       // pharmaUse: pharmaUse || 0,
       description: description || ""
     };
