@@ -11,7 +11,7 @@ import {
   Input,
   FormText
 } from "reactstrap";
-import { addAilment } from "../../redux/actions";
+import { addAilment } from "./ailmentsSlice";
 
 const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
   const dispatch = useDispatch();
@@ -60,7 +60,7 @@ const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
             </Col>
           </FormGroup>
 
-          <FormGroup row>
+          {/* <FormGroup row>
             <Label for="severity" sm={2}>
               Severity
             </Label>
@@ -79,7 +79,7 @@ const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
                 <option value="severe">Severe</option>
               </Input>
             </Col>
-          </FormGroup>
+          </FormGroup> */}
 
           <FormGroup row>
             <Label for="description" sm={2}>
@@ -108,15 +108,15 @@ export default withFormik({
   mapPropsToValues({ ailmentName, severity, pharmaUse, description }) {
     return {
       ailmentName: ailmentName || "select",
-      severity: severity || "select",
-      pharmaUse: pharmaUse || 0,
+      // severity: severity || "select",
+      // pharmaUse: pharmaUse || 0,
       description: description || ""
     };
   },
   validationSchema: Yup.object().shape({
     ailmentName: Yup.string().required("Ailment required"),
-    severity: Yup.string().required("Severity required"),
-    pharmaUse: Yup.number().required("Years of Pharma Use required"),
+    // severity: Yup.string().required("Severity required"),
+    // pharmaUse: Yup.number().required("Years of Pharma Use required"),
     description: Yup.string()
   }),
   handleSubmit(values, { setStatus }) {

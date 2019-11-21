@@ -5,10 +5,10 @@ const ailmentsSlice = createSlice({
   initialState: [],
   reducers: {
     addAilment(state, action) {
-      const { ailment, ailment_description } = action.payload;
+      const { ailmentName, description } = action.payload;
       const newAilment = {
-        ailment,
-        ailment_description,
+        ailmentName,
+        description,
         id: Date.now()
       };
       state.push(newAilment);
