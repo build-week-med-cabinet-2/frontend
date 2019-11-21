@@ -8,7 +8,7 @@ import StrainForm from "../../features/StrainForm";
 import { Ailments } from "../../features/ailments/Ailments";
 import Strains from "../../features/strains/Strains";
 import Display from "../../common/components/dashboard/Display";
-import Recommendations from "../../features/strainRecommender/Recommendations";
+import Recommendations from "../../features/strainRecommendations/Recommendations";
 import Log from "../../features/dosageLog/Log";
 
 const Routes = () => {

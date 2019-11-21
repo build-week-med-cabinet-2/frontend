@@ -35,18 +35,25 @@ const recomendationSlice = createSlice({
   },
   reducers: {
     saveRecommendation(state, action) {
-      const strain = action.paylod;
-      console.log(strain);
+      const strain = action.payload;
       state.savedStrains.push(strain);
     },
     removeRecommendation(state, action) {
-      state.savedStrains.filter(obj => obj.id !== action.payload.id);
+      const strain = action.payload;
+      return {
+        ...state,
+        savedStrains: [
+          ...state.savedStrains.filter(
+            obj => obj.strain_id !== strain.strain_id
+          )
+        ]
+      };
     }
   }
 });
 
 export const {
-  addRecommendation,
+  saveRecommendation,
   removeRecommendation
 } = recomendationSlice.actions;
 

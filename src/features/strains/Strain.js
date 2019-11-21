@@ -1,6 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addStrainToSaved, removeStrainFromSaved } from "../../redux/actions";
+import {
+  saveRecommendation,
+  removeRecommendation
+} from "../strainRecommendations/recommendationSlice";
 import {
   Card,
   CardImg,
@@ -21,12 +24,12 @@ const Strain = props => {
 
   const addToSaved = e => {
     e.preventDefault();
-    dispatch(addStrainToSaved(strain));
+    dispatch(saveRecommendation(strain));
   };
 
   const removedFromSaved = e => {
     e.preventDefault();
-    dispatch(removeStrainFromSaved(strain));
+    dispatch(removeRecommendation(strain));
   };
 
   return (

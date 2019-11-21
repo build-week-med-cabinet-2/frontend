@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ClimbingBoxLoader } from "react-spinners";
 import { getStrains } from "./strainsSlice";
-// import Strain from "../../features/strainRecommender/Strain";
 import Strain from "./Strain";
 
 export default function Strains(props) {

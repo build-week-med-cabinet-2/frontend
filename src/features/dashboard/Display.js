@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Col, Row, Button } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
-import QuickDosageEntry from "../../../features/dosageLog/QuickDosageEntry";
-import SavedStrainsList from "../../../features/strainRecommender/SavedStrainsList";
-import Log from "../../../features/dosageLog/Log";
+import QuickDosageEntry from "../dosageLog/QuickDosageEntry";
+import SavedStrainsList from "../strainRecommendations/SavedStrainsList";
+import Log from "../dosageLog/Log";
 
 const Display = props => {
   const routeChange = e => {
@@ -16,16 +16,16 @@ const Display = props => {
       <Col xs={6}>
         <QuickDosageEntry />
         <Log />
-      </Col >
+      </Col>
       <Col>
-      <SavedStrainsList allowSearch />
-      <Button
-        type="submit"
-        className="CustomButtonFilled"
-        onClick={routeChange}
-      >
-        Find New Strains
-      </Button>
+        <SavedStrainsList allowSearch />
+        <Button
+          type="submit"
+          className="CustomButtonFilled"
+          onClick={routeChange}
+        >
+          Find New Strains
+        </Button>
       </Col>
     </Row>
   );
