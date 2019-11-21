@@ -2,9 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Col, Button, Form as StrapForm, FormGroup, Label, Input, FormText } from 'reactstrap';
-
-import { addAilment } from "../../store/actions";
+import {
+  Col,
+  Button,
+  Form as StrapForm,
+  FormGroup,
+  Label,
+  Input,
+  FormText
+} from "reactstrap";
+import { addAilment } from "../../redux/actions";
 
 const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
   const dispatch = useDispatch();
@@ -27,12 +34,24 @@ const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
     <>
       <div className="FormWrapper">
         <Form>
-          <h3>Please enter information of an ailment you would like help with.</h3>
+          <h3>
+            Please enter information of an ailment you would like help with.
+          </h3>
           <FormGroup row>
-            <Label for="ailmentName" sm={2}>Ailment</Label>
+            <Label for="ailmentName" sm={2}>
+              Ailment
+            </Label>
             <Col sm={10}>
-              <Input tag={Field} component="select" name="ailmentName" id="ailmentName" invalid={touched.ailmentName && errors.ailmentName}>
-                <option disabled value="">Select Ailment</option>
+              <Input
+                tag={Field}
+                component="select"
+                name="ailmentName"
+                id="ailmentName"
+                invalid={touched.ailmentName && errors.ailmentName}
+              >
+                <option disabled value="">
+                  Select Ailment
+                </option>
                 <option value="Pain">Pain</option>
                 <option value="Stress">Stress</option>
                 <option value="Insomnia">Insomnia</option>
@@ -43,12 +62,21 @@ const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
               )}
             </Col>
           </FormGroup>
-          
+
           <FormGroup row>
-            <Label for="severity" sm={2}>Severity</Label>
+            <Label for="severity" sm={2}>
+              Severity
+            </Label>
             <Col sm={10}>
-              <Input tag={Field} component="select" name="severity" id="severity" invalid={touched.severity && errors.severity}>
-                <option disabled value="">Select Severity</option>
+              <Input
+                tag={Field}
+                component="select"
+                name="severity"
+                id="severity"
+              >
+                <option disabled value="">
+                  Select Severity
+                </option>
                 <option value="Mild">Mild</option>
                 <option value="Moderate">Moderate</option>
                 <option value="Severe">Severe</option>
@@ -60,14 +88,23 @@ const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
           </FormGroup>
 
           <FormGroup row>
-            <Label for="description" sm={2}>Description (optional)</Label>
+            <Label for="description" sm={2}>
+              Description (optional)
+            </Label>
             <Col sm={10}>
-              <Input tag={Field} type="textarea" name="description" id="description" placeholder="Description..."/>
+              <Input
+                tag={Field}
+                component="textarea"
+                name="description"
+                id="description"
+                placeholder="Description..."
+              />
             </Col>
           </FormGroup>
-          
-          <Button type="submit" className="CustomButtonOutline">Submit</Button>
 
+          <Button type="submit" className="CustomButtonOutline">
+            Submit
+          </Button>
         </Form>
       </div>
     </>

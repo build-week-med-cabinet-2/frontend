@@ -7,12 +7,13 @@ export default function Log() {
   console.log(entries);
   return (
     <>
+      <h2 style={{marginTop:"2rem"}}>Dosage History</h2>
       {entries.length ? (
-        <ol type="1">
+        <>
           {entries.map((item, index) => (
             <Entry key={index} entry={item} />
           ))}
-        </ol>
+        </>
       ) : (
         <p>Please Add a log to view past logs</p>
       )}

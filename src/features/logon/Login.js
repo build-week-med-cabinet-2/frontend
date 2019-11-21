@@ -1,21 +1,22 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import {Container, Col, Button, Input} from 'reactstrap';
+import { Container, Col, Button, Input} from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
-import {withFormik, Form, Field} from 'formik';
-import * as Yup from 'yup';
+import { withFormik, Form, Field } from "formik";
+import * as Yup from "yup";
 
-import LogoAnimated from '.././LogoAnimated';
+import LogoAnimated from "../../common/components/LogoAnimated";
 
-const Register = props => {
+const Login = props => {
   const routeChange = () => {
-    let path = "/";
+    let path = "/signup";
     props.history.push(path);
   };
 
   return (
     <div className="CenteredContainerLogin" >
-      <header className='AuthHeader'>
+      <header className="AuthHeader">
         <LogoAnimated />
         <h1>Med Cabinet</h1>
       </header>
@@ -33,7 +34,6 @@ const Register = props => {
             <p className="error">{props.errors.username}</p>
           )}
         </div>
-        
         <div>
           <Input
             type="password"
@@ -47,37 +47,22 @@ const Register = props => {
             <p className="error">{props.errors.password}</p>
           )}
         </div>
-
-        <div>
-          <Input
-            type="password"
-            name="repeatPassword"
-            tag={Field}
-            placeholder="repeat password..."
-            className="FormTextInput"
-            invalid={props.touched.repeatPassword && props.errors.repeatPassword}
-          />
-          {props.touched.repeatPassword && props.errors.repeatPassword && (
-            <p className="error">{props.errors.repeatPassword}</p>
-          )}
-        </div>
-        
         <Button type="submit" color="primary" className="CustomButtonFilled AuthButton">
-          Register!{" "}
+          Login!{" "}
           <span role="img" aria-label="PalmTree">
             🌴
           </span>
         </Button>
       </Form>
       <Col xs={{ size: 11, offset: 0.5 }} className="SwitchAuthPageWrapper">
-        <span>Already have an account?</span>
+        <span>Don't have an account?</span>
         <Button
-          outline
           onClick={routeChange}
+          outline
           color="primary"
           className="CustomButtonOutline SwitchAuthButton"
         >
-          Login
+          Sign up
         </Button>
       </Col>
     </div>
@@ -85,31 +70,34 @@ const Register = props => {
 };
 
 export default withFormik({
-  mapPropsToValues({username, password, repeatPassword}){
-    return{
-      username: username || '',
-      password: password || '',
-      repeatPassword: repeatPassword || '',
-    }
+  mapPropsToValues({ username, password }) {
+    return {
+      username: username || "",
+      password: password || ""
+    };
   },
   validationSchema: Yup.object().shape({
-    username: Yup.string().min(4,'Username must be at least 4 characters.').required('Name is required.'),
-    password: Yup.string().min(6, 'Password must be at least 6 characters.').required('Password is required.'),
-    repeatPassword: Yup.string().min(6, 'Repeat Password must be at least 6 characters.').required('Repeat Password is required.'),
+    username: Yup.string()
+      .min(4, "Username must be at least 4 characters.")
+      .required("Name is required."),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters.")
+      .required("Password is required.")
   }),
-  handleSubmit(values, {setStatus, props}){
-    const URL = "https://medicalcabinet.herokuapp.com/api/auth/register";
-    const newUser = {
-      username: values.username,
-      password: values.password
-    };
-    // const fakeToken = "this is a fake token this is bad";
+  handleSubmit(values, { setStatus, props }) {
+    const URL = "https://medicalcabinet.herokuapp.com/api/auth/login";
+    // const fakeToken = "this is a fake token this is a bad";
+
+    console.log("formik submitted with values:");
+    console.log(values);
+
     axios
-      .post(`${URL}`, newUser)
+      .post(`${URL}`, values)
       .then(res => {
-        console.log(`success`, res);
-        props.history.push("/");
+        console.log(res);
+        localStorage.setItem("token", res.data.token);
+        props.history.push("/intake/ailments");
       })
       .catch(err => console.log(err.response));
   }
-})(Register)
+})(Login);
