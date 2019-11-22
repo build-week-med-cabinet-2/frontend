@@ -31,10 +31,7 @@ const QuickDosageEntry = props => {
   // });
 
   useEffect(() => {
-    console.log("fomr clicked")
-
     if(props.status){
-      console.log("fomr sibmitted")
       dispatch(addEntryToLog(props.values));
     } 
   },[props.status])
@@ -135,7 +132,7 @@ export default withFormik({
     return {
       date: date || Date.now(),
       strain: strain || "",
-      dosageAmount: dosageAmount || null,
+      dosageAmount: dosageAmount || "",
       intakeMethod: intakeMethod || ""
     };
   },
@@ -150,7 +147,6 @@ export default withFormik({
       .required("Intake method is required.")
   }),
   handleSubmit(values, { setStatus, props }) {
-    console.log('uh')
     setStatus(values);
   }
 })(QuickDosageEntry);

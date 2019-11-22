@@ -4,7 +4,7 @@ const initialState = {
   entries: [
     {
       id: 1,
-      dosageDate: "11/19/2019",
+      date: "2019-11-19",
       strain: "Trainwreck Haze",
       dosageAmount: 100,
       intakeMethod: "vape"
