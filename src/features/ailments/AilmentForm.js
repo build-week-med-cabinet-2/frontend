@@ -12,7 +12,7 @@ import {
   FormText
 } from "reactstrap";
 import { addAilment } from "./ailmentsSlice";
-import axios from 'axios';
+import axios from "axios";
 
 const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
   const dispatch = useDispatch();
@@ -31,11 +31,11 @@ const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
     status && dispatch(addAilment(status));
   }, [status]);
 
-  const [strainIds, setStrainIds] = useState({0: 0, 1: 0, 2: 0, 3: 0, 4: 0});
+  const [strainIds, setStrainIds] = useState({ 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 });
 
   useEffect(() => {
     status && setStrainIds(status);
-  },[status])
+  }, [status]);
 
   return (
     <>
@@ -115,13 +115,7 @@ const AilmentForm = ({ values, errors, touched, status, handleChange }) => {
             Submit
           </Button>
 
-          <hr/>
-          <h4 style={{margin: '1rem 0'}}>Recommended strain ids</h4>
-          <h4>{`${strainIds['0']}, ${strainIds['1']}, ${strainIds['2']}, ${strainIds['3']}, ${strainIds['4']}`}</h4>  
-          <h4 style={{margin: '1rem 0'}}>
-            {`... can be looked up `}
-            <a href="https://www.kaggle.com/nvisagan/cannabis-strains-features">HERE</a>
-            </h4>
+          <hr />
         </Form>
       </div>
     </>
@@ -144,28 +138,37 @@ export default withFormik({
     description: Yup.string()
   }),
   handleSubmit(values, { setStatus }) {
-    const ailmentString = formatAilment(values.ailmentName, values.severity, values.description);
+    const ailmentString = formatAilment(
+      values.ailmentName,
+      values.severity,
+      values.description
+    );
     console.log(ailmentString);
     setStatus(values);
 
     axios
       // .get('https://cannabis-api-1.herokuapp.com', ailmentString)
-      .get(`https://cors-anywhere.herokuapp.com/https://cannabis-api-1.herokuapp.com/${ailmentString}`)
+      .get(
+        `https://cors-anywhere.herokuapp.com/https://cannabis-api-1.herokuapp.com/${ailmentString}`
+      )
       .then(res => {
-          setStatus(res.data);
-          console.log(res.data);
+        setStatus(res.data);
+        console.log(res.data);
       })
       .catch(err => console.log(err.message));
   }
 })(AilmentForm);
 
-function formatAilment(ailmentName, severity, description){
+function formatAilment(ailmentName, severity, description) {
   let str = `${severity.toLowerCase()}%20${ailmentName.toLowerCase()}`;
-  const punctuationlessDesc = description.replace(/[.,\/#!$%\^&\*;:{}=\-_?`~()]/g," ");
-  var descString = punctuationlessDesc.replace(/\s{2,}/g," ");
+  const punctuationlessDesc = description.replace(
+    /[.,\/#!$%\^&\*;:{}=\-_?`~()]/g,
+    " "
+  );
+  var descString = punctuationlessDesc.replace(/\s{2,}/g, " ");
   let splitDesc = descString.trim().split(/\.| /);
-  splitDesc.forEach((word) => {
-    str += `%20${word.toLowerCase()}`
-  })
+  splitDesc.forEach(word => {
+    str += `%20${word.toLowerCase()}`;
+  });
   return str;
 }
