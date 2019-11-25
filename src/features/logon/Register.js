@@ -110,7 +110,7 @@ export default withFormik({
       .required("Repeat Password is required.")
   }),
   handleSubmit(values, { setStatus, props }) {
-    const URL = "https://medicalcabinet.herokuapp.com/api/auth/register";
+    const URL = "https://med-cabinet-backend.herokuapp.com/api/auth/register";
     const newUser = {
       username: values.username,
       password: values.password

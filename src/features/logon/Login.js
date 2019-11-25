@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Container, Col, Button, Input} from "reactstrap";
+import { Container, Col, Button, Input } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -15,7 +15,7 @@ const Login = props => {
   };
 
   return (
-    <div className="CenteredContainerLogin" >
+    <div className="CenteredContainerLogin">
       <header className="AuthHeader">
         <LogoAnimated />
         <h1>Med Cabinet</h1>
@@ -47,7 +47,11 @@ const Login = props => {
             <p className="error">{props.errors.password}</p>
           )}
         </div>
-        <Button type="submit" color="primary" className="CustomButtonFilled AuthButton">
+        <Button
+          type="submit"
+          color="primary"
+          className="CustomButtonFilled AuthButton"
+        >
           Login!{" "}
           <span role="img" aria-label="PalmTree">
             🌴
@@ -85,7 +89,7 @@ export default withFormik({
       .required("Password is required.")
   }),
   handleSubmit(values, { setStatus, props }) {
-    const URL = "https://medicalcabinet.herokuapp.com/api/auth/login";
+    const URL = "https://med-cabinet-backend.herokuapp.com/api/auth/login";
     // const fakeToken = "this is a fake token this is a bad";
 
     console.log("formik submitted with values:");
